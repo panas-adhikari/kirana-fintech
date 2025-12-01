@@ -1,3 +1,5 @@
+
+
 // Error Constants
 const passErr1 = "Password must contain at least one lowercase letter";
 const passErr2 = "Password must contain at least one uppercase letter";
@@ -44,7 +46,7 @@ export const registerPasswordValidator = (password: string): ValidationResult =>
     }
 
     // If all pass
-    return { error: false, message: "" };
+    return { error: false, message: "Good to go" };
 };
 
 /**
@@ -75,3 +77,14 @@ export const loginEmailValidator = (email: string): ValidationResult => {
 
     return { error: false, message: "" };
 };
+
+export const validator = (validationType: string, value: string) => {
+    switch (validationType) {
+        case "email":
+            return registerEmailValidator(value);
+        case "password":
+            return registerPasswordValidator(value);
+        default:
+            return { error: true, message: "Invalid validation type" };
+    }
+}

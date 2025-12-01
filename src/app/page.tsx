@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Card from '@/components/ui/Card';
@@ -24,8 +25,12 @@ export default function Home() {
                 specifically for Nepal.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg">Get Started</Button>
-                <Button variant="outline" size="lg">Learn More</Button>
+                <Link href="/register">
+                  <Button size="lg">Get Started</Button>
+                </Link>
+                <Link href="/login">
+                  <Button variant="outline" size="lg">Sign In</Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -99,7 +104,9 @@ export default function Home() {
               <p className="text-lg text-blue-100 mb-6">
                 Join hundreds of kirana stores across Nepal using {APP_NAME} to grow their business.
               </p>
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">Start Free Trial</Button>
+              <Link href="/register">
+                <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100">Start Free Trial</Button>
+              </Link>
             </Card>
           </div>
         </section>
