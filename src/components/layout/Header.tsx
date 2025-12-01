@@ -17,9 +17,11 @@ export default function Header() {
                         <Link href="/reports" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Reports</Link>
                     </nav>
 
-                    <div className="flex items-center">
-                        <Link href="/login" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Login</Link>
+                    <div className="flex items-center space-x-6">
+                        <Link href="/login" prefetch={false} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Login</Link>
+                        <Link href="/register" prefetch={false} className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Register</Link>
                     </div>
+
                 </div>
             </div>
         </header>
