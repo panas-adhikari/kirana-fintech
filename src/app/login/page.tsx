@@ -73,7 +73,7 @@ export default function LoginPage() {
                     </div>
 
                     <Button type="submit" className="w-full">
-                        Sign In
+                        Sign Update
                     </Button>
                 </form>
 
