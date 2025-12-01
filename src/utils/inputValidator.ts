@@ -50,6 +50,18 @@ export const registerPasswordValidator = (password: string): ValidationResult =>
 };
 
 /**
+ * Validates confirm password 
+ */
+
+export const registerConfirmPasswordValidator = (confirmPassword: string, password: string): ValidationResult => {
+    if(confirmPassword !== password ){
+        return {error: true, message: "Passwords do not match"};
+    }
+
+    return { error: false, message: "Good to go" };
+};
+
+/**
  * Validates Email format for Registration
  */
 export const registerEmailValidator = (email: string): ValidationResult => {
@@ -62,6 +74,7 @@ export const registerEmailValidator = (email: string): ValidationResult => {
 
     return { error: false, message: "" };
 };
+
 
 /**
  * Validates Email format for Login
@@ -78,12 +91,19 @@ export const loginEmailValidator = (email: string): ValidationResult => {
     return { error: false, message: "" };
 };
 
-export const validator = (validationType: string, value: string) => {
+export const validator = (validationType: string, value: string, password?: string) => {
     switch (validationType) {
         case "email":
             return registerEmailValidator(value);
         case "password":
             return registerPasswordValidator(value);
+        case "confirmPassword":
+            // Call registerConfirmPasswordValidator with both confirmPassword and password
+            if (password) {
+                return registerConfirmPasswordValidator(value, password);  // Validate confirmPassword
+            } else {
+                return { error: true, message: "Password is required" };  // Handle case where password is missing
+            }
         default:
             return { error: true, message: "Invalid validation type" };
     }

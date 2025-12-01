@@ -11,6 +11,7 @@ import { RegisterFormData } from '@/types';
 export default function RegisterPage() {
     const router = useRouter();
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
@@ -18,6 +19,7 @@ export default function RegisterPage() {
 
     const [errors, setErrors] = useState<RegisterFormData>({
         password: "",
+        confirmPassword: "",
         email: "",
         name: "",
         phone: "",
@@ -42,6 +44,19 @@ export default function RegisterPage() {
             setErrors(prev => ({ ...prev, password: "" }));
         }
     }, [password]);
+
+     // Confirm Password validation
+     useEffect(() =>{
+        if (confirmPassword) {
+           const validationResult = validator("confirmPassword",confirmPassword, password);
+           setErrors(prev => ({
+                ...prev,
+                confirmPassword: validationResult?.message || ""
+            }));
+        } else {
+            setErrors(prev => ({ ...prev, confirmPassword: "" }));
+        }
+    }, [confirmPassword, password]);
 
     useEffect(() => {
         if (email) {
@@ -103,7 +118,7 @@ export default function RegisterPage() {
 
                 <form className="space-y-6" onSubmit={handleSubmit}>
 
-                    <div>
+                    {/* <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                             Store Name
                         </label>
@@ -115,9 +130,9 @@ export default function RegisterPage() {
                             className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg"
                             placeholder="My Kirana Store"
                         />
-                    </div>
+                    </div> */}
 
-                    <div>
+                    {/* <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
                             Your Name
                         </label>
@@ -129,7 +144,7 @@ export default function RegisterPage() {
                             className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg"
                             placeholder="John Doe"
                         />
-                    </div>
+                    </div> */}
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
@@ -179,7 +194,24 @@ export default function RegisterPage() {
                         )}
                     </div>
 
-                    <Button type="submit" className="w-full" disabled={loading || !!errors.password || !!errors.email}>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+                            Confirm Password
+                        </label>
+                        <input
+                            type="password"
+                            value={confirmPassword}
+                            onChange={e => setConfirmPassword(e.target.value)}
+                            required
+                            className={`w-full px-4 py-2 border rounded-lg ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'}`}
+                            placeholder="••••••••"
+                        />
+                        {errors.confirmPassword && (
+                            <p className="text-red-500 text-sm mt-1">{errors.confirmPassword}</p>
+                        )}
+                    </div>
+
+                    <Button type="submit" className="w-full" disabled={loading || !!errors.password || !!errors.email || !!errors.confirmPassword}>
                         {loading ? 'Creating Account...' : 'Create Account'}
                     </Button>
                 </form>

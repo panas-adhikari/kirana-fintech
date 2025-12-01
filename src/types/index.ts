@@ -86,7 +86,9 @@ export interface LoginFormData {
 export interface RegisterFormData {
     email: string;
     password: string;
+    confirmPassword: string;
     name: string;
     phone: string;
     store_name: string;
+
 }
