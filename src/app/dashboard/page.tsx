@@ -2,10 +2,17 @@ import Link from 'next/link';
 import Card from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
 import { APP_NAME } from '@/config/constants';
+import Sidebar from '@/components/layout/Sidebar';
 
 export default function DashboardPage() {
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-slate-900">
+        <div className="min-h-screen flex flex-row bg-gray-50 dark:bg-slate-900">
+            {/* <div className="fixed">
+                <Sidebar />
+            </div> */}
+            <Sidebar />
+
+            <div className="flex-1 flex flex-col "> 
             {/* Dashboard Header */}
             <header className="bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -216,6 +223,7 @@ export default function DashboardPage() {
                     </Card>
                 </div>
             </main>
+        </div>
         </div>
     );
 }
