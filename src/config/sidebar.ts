@@ -8,7 +8,7 @@ export interface SidebarChild {
 
 export interface SidebarMenuItem {
   title: string;
-  icon:  React.ComponentType;  // Icon should be a React element
+  icon: React.ComponentType;  // Icon should be a React element
   href: string;
   children?: SidebarChild[];
 }
@@ -63,5 +63,10 @@ export const sidebarMenu: SidebarMenuItem[] = [
     title: "Settings",
     icon: FaCog,  // Use the React component
     href: "/settings",
+  },
+  {
+    title: "Transactions",
+    icon: FaFileInvoice,
+    href: "/dashboard/transactions",
   },
 ];
