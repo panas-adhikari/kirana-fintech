@@ -44,7 +44,7 @@ export default function Sidebar() {
         {/* Title and Description */}
         {!collapsed &&(
           <div className="ml-3">
-          <h2 className="text-lg font-semibold text-gray-800 dark:text-white">KiranaFinTech_KIT</h2>
+          <h2 className="truncate w-40 text-lg font-semibold text-gray-800 dark:text-white">KiranaFinTech_KIT</h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">Workspace</p>
         </div>
       )}
