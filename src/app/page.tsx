@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import Card from '@/components/ui/Card';
-import Button from '@/components/ui/Button';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { APP_NAME } from '@/config/constants';
 
 export default function Home() {

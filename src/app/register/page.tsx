@@ -2,8 +2,8 @@
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Button from '@/components/ui/Button';
-import Card from '@/components/ui/Card';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import { APP_NAME } from '@/config/constants';
 import { validator } from '@/utils/inputValidator';
 import { RegisterFormData } from '@/types';
