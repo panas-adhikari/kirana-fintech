@@ -59,6 +59,8 @@ export function DashboardWrapper({
         'flex-1 flex flex-col',
         'bg-white dark:bg-slate-800',
         'rounded-lg',
+        // 'overflow-y-auto', // Removed to let parent handle scroll
+        // 'max-h-[calc(100vh-4rem)]', // Removed to fit dynamic viewport
         paddingClasses[padding],
         marginClasses[margin],
         border && borderClasses[borderColor],

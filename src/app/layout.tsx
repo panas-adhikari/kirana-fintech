@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-       <body className="min-h-screen bg-gray-50 dark:bg-slate-900">
+      <body className="h-[100dvh] overflow-hidden bg-gray-50 dark:bg-slate-900 antialiased">
         {children}
       </body>
     </html>

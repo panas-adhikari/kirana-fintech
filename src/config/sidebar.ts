@@ -1,5 +1,15 @@
 import { ReactElement } from "react";
-import { FaTachometerAlt, FaFileInvoice, FaMoneyBillAlt, FaMoneyCheckAlt, FaUsers, FaUserAlt, FaChartLine, FaCog } from "react-icons/fa";
+
+// Updated Icon Imports to match the screenshot
+import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard'; // Matches the 4-square dashboard
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined'; // Matches the Invoice document look
+import RequestQuoteOutlinedIcon from '@mui/icons-material/RequestQuoteOutlined'; // Matches Expenses (Document with symbol)
+import PaymentsOutlinedIcon from '@mui/icons-material/PaymentsOutlined'; // Matches Incomes (Bill/Cash)
+import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined'; // Matches Dealers (Shop icon)
+import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline'; // Matches Customers (Outline style)
+import BarChartOutlinedIcon from '@mui/icons-material/BarChartOutlined'; // Matches Reports (Bar graph)
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'; // Matches Settings
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'; // Matches Help Center
 
 export interface SidebarChild {
   label: string;
@@ -8,7 +18,7 @@ export interface SidebarChild {
 
 export interface SidebarMenuItem {
   title: string;
-  icon: React.ComponentType;  // Icon should be a React element
+  icon: React.ComponentType;
   href: string;
   children?: SidebarChild[];
 }
@@ -17,12 +27,12 @@ export interface SidebarMenuItem {
 export const sidebarMenu: SidebarMenuItem[] = [
   {
     title: "Dashboard",
-    icon: FaTachometerAlt,  // Use the React component, not the JSX element
+    icon: SpaceDashboardIcon,
     href: "/dashboard",
   },
   {
     title: "Invoices",
-    icon: FaFileInvoice,  // Use the React component
+    icon: DescriptionOutlinedIcon,
     href: "/invoices",
     children: [
       { label: "Paid", href: "/invoices/paid" },
@@ -32,27 +42,27 @@ export const sidebarMenu: SidebarMenuItem[] = [
   },
   {
     title: "Expenses",
-    icon: FaMoneyBillAlt,  // Use the React component
+    icon: RequestQuoteOutlinedIcon, // Changed to match the document-style icon in image
     href: "/expenses",
   },
   {
     title: "Incomes",
-    icon: FaMoneyCheckAlt,  // Use the React component
+    icon: PaymentsOutlinedIcon, // Changed to match the cash bill icon in image
     href: "/incomes",
   },
   {
     title: "Dealers",
-    icon: FaUsers,  // Use the React component
+    icon: StorefrontOutlinedIcon, // Changed from Tag to Shop icon as per image
     href: "/dealers",
   },
   {
     title: "Customers",
-    icon: FaUserAlt,  // Use the React component
+    icon: PeopleOutlineIcon,
     href: "/customers",
   },
   {
     title: "Reports",
-    icon: FaChartLine,  // Use the React component
+    icon: BarChartOutlinedIcon, // Changed to Bar Chart as per image
     href: "/reports",
     children: [
       { label: "Sales", href: "/reports/sales" },
@@ -61,12 +71,13 @@ export const sidebarMenu: SidebarMenuItem[] = [
   },
   {
     title: "Settings",
-    icon: FaCog,  // Use the React component
+    icon: SettingsOutlinedIcon,
     href: "/settings",
   },
+  // I added Help Center because it is in your screenshot
   {
-    title: "Transactions",
-    icon: FaFileInvoice,
-    href: "/dashboard/transactions",
+    title: "Help Center",
+    icon: HelpOutlineIcon,
+    href: "/help",
   },
 ];
