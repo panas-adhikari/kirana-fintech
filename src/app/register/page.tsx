@@ -1,198 +1,91 @@
 'use client';
-import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { APP_NAME } from '@/config/constants';
-import { validator } from '@/utils/inputValidator';
-import { RegisterFormData } from '@/types';
+import React, { useState } from "react";
+import Link from "next/link";
+import Step1 from "./Step1";
+import Step2 from "./Step2";
+import Step3 from "./Step3";
+import { Button } from "@/components/ui/button";
 
-export default function RegisterPage() {
-    const router = useRouter();
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState("");
-    const [name, setName] = useState("");
-    const [phone, setPhone] = useState("");
-    const [storeName, setStoreName] = useState("");
+const STEPS = [{ label: "Personal Info" }, { label: "Business Details" }, { label: "Final Step" }];
 
-    const [errors, setErrors] = useState<RegisterFormData>({
-        password: "",
-        email: "",
-        name: "",
-        phone: "",
-        store_name: ""
-    });
+export default function SignupWizard() {
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({
+    name: "", email: "", businessName: "", phone: "", password: "", confirmPassword: "",
+  });
 
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        // Only validate password if it's not empty to avoid initial error
-        if (password) {
-            const validationResult = validator("password", password);
-            const errorString = typeof validationResult === "string"
-                ? validationResult
-                : validationResult?.message ?? "";
-
-            setErrors(prev => ({
-                ...prev,
-                password: errorString
-            }));
-        } else {
-            setErrors(prev => ({ ...prev, password: "" }));
-        }
-    }, [password]);
-
-    useEffect(() => {
-        if (email) {
-            const validationResult = validator("email", email);
-            setErrors(prev => ({
-                ...prev,
-                email: validationResult?.message || ""
-            }));
-        } else {
-            setErrors(prev => ({ ...prev, email: "" }));
-        }
-    }, [email]);
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
-        // Final validation before submission
-        const passValidation = validator("password", password);
-        const emailValidation = validator("email", email);
-
-        if (passValidation.error || emailValidation.error) {
-            return;
-        }
-
-        if (!name || !storeName || !phone) {
-            // Simple check for required fields
-            return;
-        }
-
-        setLoading(true);
-
-        try {
-            // TODO: Implement actual registration API call here
-            console.log("Registering with:", { name, email, phone, storeName, password });
-
-            // Simulate API delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
-
-            // Redirect to login or dashboard
-            router.push('/login');
-        } catch (error) {
-            console.error("Registration failed", error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-100 dark:from-slate-900 dark:to-slate-800 px-4 py-12">
-            <Card className="w-full max-w-md">
-                <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                        Create Account
-                    </h1>
-                    <p className="text-gray-600 dark:text-gray-300">
-                        Start managing your kirana store with {APP_NAME}
-                    </p>
-                </div>
-
-                <form className="space-y-6" onSubmit={handleSubmit}>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-                            Store Name
-                        </label>
-                        <input
-                            type="text"
-                            value={storeName}
-                            onChange={e => setStoreName(e.target.value)}
-                            required
-                            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg"
-                            placeholder="My Kirana Store"
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-                            Your Name
-                        </label>
-                        <input
-                            type="text"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                            required
-                            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg"
-                            placeholder="John Doe"
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-                            Email Address
-                        </label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            required
-                            className={`w-full px-4 py-2 border rounded-lg ${errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'}`}
-                            placeholder="you@example.com"
-                        />
-                        {errors.email && (
-                            <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                        )}
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-                            Phone Number
-                        </label>
-                        <input
-                            type="tel"
-                            value={phone}
-                            onChange={e => setPhone(e.target.value)}
-                            required
-                            className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg"
-                            placeholder="+977 98XXXXXXXX"
-                        />
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-                            Password
-                        </label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                            required
-                            className={`w-full px-4 py-2 border rounded-lg ${errors.password ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'}`}
-                            placeholder="••••••••"
-                        />
-                        {errors.password && (
-                            <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-                        )}
-                    </div>
-
-                    <Button type="submit" className="w-full" disabled={loading || !!errors.password || !!errors.email}>
-                        {loading ? 'Creating Account...' : 'Create Account'}
-                    </Button>
-                </form>
-
-                <div className="mt-6 text-center">
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Already have an account?{' '}
-                        <Link href="/login" className="font-medium text-blue-600 dark:text-blue-400">
-                            Sign in
-                        </Link>
-                    </p>
-                </div>
-            </Card>
+  return (
+    <div className="min-h-screen bg-[#F9FAFB] flex flex-col font-sans">
+      {/* Navbar */}
+      <nav className="w-full bg-white border-b border-gray-100 px-6 py-4 flex justify-between items-center shrink-0">
+        <div className="flex items-center gap-2">
+          {/* Logo */}
+            <Link href="/" className="flex items-center space-x-2 text-brand-primary transition-colors">
+                <span className="text-2xl font-bold tracking-tight">KiranaFinTech<span className="text-emerald-500">_KIT</span></span>
+            </Link>
         </div>
-    );
+        <div className="flex items-center gap-3">
+          <span className="text-sm text-gray-500 hidden sm:inline">Already have an account?</span>
+           <Link href="/login" className="text-[#00C805] font-bold text-sm hover:text-[#00b304] hover:bg-green-50 hover:rounded-md p-1.5">Log In</Link>
+        </div>
+      </nav>
+
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
+        <div className="w-full max-w-[420px] bg-white rounded-[24px] shadow-sm border border-gray-100 p-8">
+          
+          {/* Progress Bar Area */}
+          <div className="mb-6">
+            <div className="flex justify-between items-center mb-3">
+              <span className="text-[12px] font-[500] uppercase tracking-wider">Step {step} of 3</span>
+              <span className="text-[12px] font-[500] text-[#3a7046] capitalize tracking-wider">{STEPS[step - 1].label}</span>
+            </div>
+            <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+              <div
+                className="bg-[#00C805] h-full transition-all duration-500 ease-in-out"
+                style={{ width: `${(step / 3) * 100}%` }}
+              />
+            </div>
+          </div>
+
+          {/* Step Content */}
+          <div className="min-h-[380px] flex flex-col">
+            {step === 1 && <Step1 formData={formData} setFormData={setFormData} nextStep={() => setStep(2)} />}
+            {step === 2 && <Step2 formData={formData} setFormData={setFormData} nextStep={() => setStep(3)} prevStep={() => setStep(1)} />}
+            {step === 3 && <Step3 formData={formData} setFormData={setFormData} prevStep={() => setStep(2)} submit={() => console.log(formData)} />}
+          </div>
+
+          {/* Inner Footer Policy*/}
+          <div className="mt-6 pt-4 border-t border-gray-50 text-center">
+              <p className="text-[11px] text-gray-400 leading-tight">
+                  {step === 3 && "By clicking \"Create Account\", "}By continuing, you agree to our{" "}
+                  <a href="#" className="text-gray-900 font-bold hover:underline">Terms of Service</a> and{" "}
+                  <a href="#" className="text-gray-900 font-bold hover:underline">Privacy Policy</a>.
+              </p>
+          </div>
+        </div>
+
+        {/* Outer Footer Elements */}
+        <div className="mt-8 text-center space-y-4">
+          {step === 2 && (
+             <p className="text-sm text-gray-400 font-medium">
+               Need help setting up? <a href="#" className="text-[#00C805] font-bold">Contact Support</a>
+             </p>
+          )}
+          {step === 3 && (
+            <div className="flex gap-6 justify-center text-gray-400 text-[11px] font-bold uppercase tracking-widest">
+              <div className="flex items-center gap-1.5 opacity-60">
+                <div className="w-4 h-4 rounded-full border border-gray-400 flex items-center justify-center text-[8px]">✓</div>
+                Bank-grade Security
+              </div>
+              <div className="flex items-center gap-1.5 opacity-60">
+                <div className="w-4 h-4 rounded-full border border-gray-400 flex items-center justify-center text-[8px]">🛡</div>
+                256-bit Encryption
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
