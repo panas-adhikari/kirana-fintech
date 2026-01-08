@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { Plus } from 'lucide-react';
+
 
 import { Button } from '@/components/ui/button';
 import {
@@ -23,6 +23,7 @@ import { addTransaction } from '@/lib/services/transactionService';
 const transactionSchema = z.object({
     type: z.enum(['sale', 'expense', 'purchase', 'credit']),
     amount: z.string().min(1, 'Amount is required'),
+    currency: z.enum(['NRS', 'IC', 'USD', 'EURO']),
     description: z.string().optional(),
 });
 
@@ -31,6 +32,7 @@ type TransactionFormValues = z.infer<typeof transactionSchema>;
 export function AddTransactionModal() {
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [amountFocused, setAmountFocused] = useState(false);
 
     const {
         register,
@@ -42,9 +44,12 @@ export function AddTransactionModal() {
         defaultValues: {
             type: 'sale',
             amount: '',
+            currency: 'NRS',
             description: '',
         },
     });
+
+    const amountRegister = register('amount');
 
     const onSubmit = async (data: TransactionFormValues) => {
         setLoading(true);
@@ -66,11 +71,15 @@ export function AddTransactionModal() {
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">
-                    <Plus className="mr-2 h-4 w-4" /> Add Transaction
-                </Button>
-            </DialogTrigger>
+            <div className="flex items-center gap-2">
+                                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">Create New Invoice</Button>
+
+                <DialogTrigger asChild>
+                    <Button className="bg-white hover:bg-white text-black">
+                        Record Expenses
+                    </Button>
+                </DialogTrigger>
+            </div>
             <DialogContent className="sm:max-w-[425px] bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100">
                 <DialogHeader>
                     <DialogTitle>Add Transaction</DialogTitle>
@@ -100,19 +109,37 @@ export function AddTransactionModal() {
 
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="amount" className="text-right">
-                            Amount (NPR)
+                            Amount
                         </Label>
-                        <Input
-                            id="amount"
-                            type="number"
-                            placeholder="0.00"
-                            className="col-span-3"
-                            {...register('amount')}
-                        />
+                        <div className="col-span-3">
+                            <div className={`flex h-10 items-center rounded-md ${amountFocused ? 'border-transparent dark:border-transparent focus-within:ring-0' : 'border border-slate-200 dark:border-slate-800 focus-within:ring-2 focus-within:ring-slate-950 focus-within:ring-offset-2'} bg-white px-1 py-0 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-950 dark:focus-within:ring-slate-300`}>
+                                <select
+                                    id="currency"
+                                    {...register('currency')}
+                                    aria-label="currency"
+                                    className="h-full bg-transparent border-0 px-0 text-[10px] text-center text-slate-700 dark:text-slate-200 w-12 leading-tight focus:outline-none focus:ring-0"
+                                >
+                                    <option value="NRS">NRS</option>
+                                    <option value="IC">IC</option>
+                                    <option value="USD">USD</option>
+                                    <option value="EURO">EURO</option>
+                                </select>
+
+                                <Input
+                                    id="amount"
+                                    type="number"
+                                    placeholder="0.00"
+                                    className="flex-1 h-full border-0 bg-transparent pl-1 text-sm focus:outline-none focus:ring-0 focus-visible:ring-0"
+                                    {...amountRegister}
+                                    onFocus={() => setAmountFocused(true)}
+                                    onBlur={(e) => { setAmountFocused(false); amountRegister.onBlur?.(e); }}
+                                />
+                            </div>
+                            {errors.amount && (
+                                <p className="text-red-500 text-xs mt-1">{errors.amount.message}</p>
+                            )}
+                        </div>
                     </div>
-                    {errors.amount && (
-                        <p className="text-red-500 text-xs ml-[25%] col-span-3">{errors.amount.message}</p>
-                    )}
 
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="description" className="text-right">

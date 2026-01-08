@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Plus } from "lucide-react";
+ 
 
 import { Button } from "@/components/ui/button";
 import {
@@ -83,11 +83,15 @@ export function AddTransactionDialog() {
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">
-                    <Plus className="mr-2 h-4 w-4" /> Add Transaction
-                </Button>
-            </DialogTrigger>
+            <div className="flex items-center gap-2">
+                                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">Create New Invoice</Button>
+
+                <DialogTrigger asChild>
+                    <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">
+                        Record Expenses
+                    </Button>
+                </DialogTrigger>
+            </div>
             <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>
                     <DialogTitle>Add New Transaction</DialogTitle>

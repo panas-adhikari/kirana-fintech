@@ -46,7 +46,7 @@ export const registerPasswordValidator = (password: string): ValidationResult =>
     }
 
     // If all pass
-    return { error: false, message: "Good to go" };
+    return { error: false, message: "" };
 };
 
 /**
