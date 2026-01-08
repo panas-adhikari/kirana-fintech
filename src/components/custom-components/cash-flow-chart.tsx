@@ -36,25 +36,14 @@ export function CashFlowChart({
       {/* Inner content container */}
       <Card className="absolute inset-[1.5px] rounded-[10px] border-none shadow-none bg-white dark:bg-slate-800">
         <style jsx global>{cssStyles}</style>
-        <CardHeader className="flex flex-row items-center justify-between p-4 pb-2">
+        <CardHeader className="flex flex-col items-start p-4 pb-2">
           <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
             Cash Flow
           </CardTitle>
           <div className="text-sm text-gray-500 dark:text-gray-400">Last 30 Days</div>
         </CardHeader>
         <CardContent className="p-4 pt-0">
-          {/* Net Value Display */}
-          <div className="flex justify-end mb-2">
-            <span className="text-sm font-medium text-green-700 dark:text-green-400">
-              Net:{' '}
-            </span>
-            <span className="text-sm font-bold text-green-700 dark:text-green-400 ml-1">
-              NPR {netValue.toLocaleString('en-US', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}
-            </span>
-          </div>
+          
 
           {/* Cash Flow Bars */}
           <div className="space-y-3">
@@ -98,7 +87,7 @@ export function CashFlowChart({
           </div>
 
           {/* Summary Footer */}
-          <div className="mt-4 pt-3 border-t border-gray-200 dark:border-slate-700 grid grid-cols-3 gap-2 text-center text-sm">
+          <div className="mt-4 pt-5 border-t border-gray-200 dark:border-slate-700 grid grid-cols-3 gap-2 text-center text-sm">
             <div>
               <div className="text-gray-500 dark:text-gray-400 text-xs mb-1">
                 Opening Balance

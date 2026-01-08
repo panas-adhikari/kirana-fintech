@@ -11,11 +11,11 @@ import { motion } from 'framer-motion';
 export default function DashboardPage() {
     return (
         <DashboardWrapper padding="lg" margin="md">
-            <motion.div
+            {/* <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-            >
+            > */}
                 {/* Welcome Section */}
                 <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div>
@@ -35,19 +35,21 @@ export default function DashboardPage() {
                 </div>
 
                 {/* Cash Flow and Recent Activity Section */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-12">
-                    <div className="lg:col-span-2">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 pb-12">
+                    
                         <CashFlowChart
-                            opening="79,336.89"
-                            netChange="45,231.00"
-                            closing="124,567.89"
+                            opening = "79,336.89"
+                            netChange = "45,231.00"
+                            closing = "124,567.89"
+                            cashIn={80000}
+                            cashOut={35000}
                         />
-                    </div>
+                    
                     <div className="lg:col-span-1">
                         <RecentActivity />
                     </div>
                 </div>
-            </motion.div>
+            {/* </motion.div> */}
         </DashboardWrapper>
     );
 }
