@@ -122,12 +122,30 @@ export function RecentActivity({
           {displayActivities.map((activity) => (
             <div
               key={activity.id}
-              className="flex items-start justify-between py-3 border-b border-gray-100 dark:border-slate-700 last:border-b-0"
+              className="flex items-start justify-between py-3 border-b border-gray-100 dark:border-slate-700 last:border-b-0 activity-item"
+              style={{
+    padding: '10px',
+    border: '10px solid #ffffffff',
+    borderRadius: '8px',
+    marginBottom: '5px',
+    transition: 'box-shadow 0.3s ease',
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.boxShadow =
+      activity.trend === 'positive'
+        ? '0 4px 12px rgba(52,211,153,0.3)'   // green shadow
+        : '0 4px 12px rgba(248,113,113,0.3)'; // red shadow
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.boxShadow = 'none';
+  }}
             >
               <div className="flex items-start flex-1">
                 {/* Icon */}
                 <div
-                  className={`mr-3 p-2 rounded-lg ${getIconBackground(activity.trend)} flex-shrink-0`}
+                  className={`mr-3 p-2 rounded-lg ${getIconBackground(
+                    activity.trend
+                  )} flex-shrink-0`}
                 >
                   {activity.icon || <FileText className="w-4 h-4" />}
                 </div>
@@ -151,7 +169,9 @@ export function RecentActivity({
               {/* Amount */}
               {activity.amount && (
                 <div
-                  className={`font-semibold text-sm ml-2 flex-shrink-0 ${getColorClasses(activity.trend)}`}
+                  className={`font-semibold text-sm ml-2 flex-shrink-0 ${getColorClasses(
+                    activity.trend
+                  )}`}
                 >
                   {activity.amount}
                 </div>
