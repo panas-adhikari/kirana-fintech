@@ -22,6 +22,8 @@ export default function LoginPage() {
         password: ""
     });
 
+    const [passwordValid, setPasswordValid] = useState<boolean | null>(null);
+
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -43,8 +45,10 @@ export default function LoginPage() {
                 ...prev,
                 password: validationResult?.message || ""
             }));
+            setPasswordValid(!validationResult.error);
         } else {
             setErrors(prev => ({ ...prev, password: "" }));
+            setPasswordValid(null);
         }
     }, [password]);
 
@@ -129,11 +133,11 @@ export default function LoginPage() {
                             value={password}
                             onChange={e => setPassword(e.target.value)}
                             required
-                            className={`transition-all ${errors.password ? 'border-red-500' : ''}`}
+                            className={`transition-all ${passwordValid === true ? 'border-green-500' : (errors.password ? 'border-red-500' : '')}`}
                             placeholder="••••••••"
                         />
                         {errors.password && (
-                            <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+                            <p className={`${passwordValid ? 'text-blue-500' : 'text-red-500'} text-sm mt-1`}>{errors.password}</p>
                         )}
                     </div>
 
