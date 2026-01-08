@@ -1,14 +1,97 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Lock, Eye, CheckCircle2, Circle, ArrowRight, ArrowLeft } from "lucide-react";
+import { registerPasswordValidator } from "@/utils/inputValidator";
 
 export default function Step3({ formData, setFormData, prevStep, submit }: any) {
+  const [password, setPassword] = useState(formData.password || "");
+  const [confirmPassword, setConfirmPassword] = useState(formData.confirmPassword || "");
   const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+
+  const handlePasswordChange = (value: string) => {
+    setPassword(value);
+    
+    // Validate on change
+    const result = registerPasswordValidator(value);
+    setPasswordError(result.error ? result.message : "");
+  };
+
+  const handleConfirmPasswordChange = (value: string) => {
+    setConfirmPassword(value);
+    
+    // Check if passwords match
+    if (value && password && value !== password) {
+      setConfirmPasswordError("Passwords do not match");
+    } else {
+      setConfirmPasswordError("");
+    }
+  };
+
+  const isPasswordValid = !registerPasswordValidator(password).error && password === confirmPassword && confirmPassword !== "";
+
+  const handleSubmit = () => {
+    // Final validation
+    const passwordValidation = registerPasswordValidator(password);
+    
+    if (passwordValidation.error) {
+      setPasswordError(passwordValidation.message);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setConfirmPasswordError("Passwords do not match");
+      return;
+    }
+
+    if (!confirmPassword) {
+      setConfirmPasswordError("Confirm password is required");
+      return;
+    }
+
+    setFormData({
+      ...formData,
+      password: password,
+      confirmPassword: confirmPassword,
+    });
+
+    submit();
+  };
+
+  // Calculate password strength based on criteria met
+  const passwordStrength = useMemo(() => {
+    let strength = 0;
+    
+    if (password.length >= 8) strength++;
+    if (/[a-z]/.test(password)) strength++;
+    if (/[A-Z]/.test(password)) strength++;
+    if (/\d/.test(password)) strength++;
+    if (/[@$!%*?&]/.test(password)) strength++;
+    
+    return strength;
+  }, [password]);
+
+  // Get strength label and color
+  const getStrengthInfo = (strength: number) => {
+    if (strength <= 1) return { label: "Weak", color: "text-red-500", bgColor: "bg-red-500" };
+    if (strength <= 2) return { label: "Fair", color: "text-orange-500", bgColor: "bg-orange-500" };
+    if (strength <= 3) return { label: "Good", color: "text-yellow-500", bgColor: "bg-yellow-500" };
+    if (strength <= 4) return { label: "Strong", color: "text-[#00C805]", bgColor: "bg-[#00C805]" };
+    return { label: "Very Strong", color: "text-green-700", bgColor: "bg-green-700" };
+  };
+
+  const strengthInfo = getStrengthInfo(passwordStrength);
+
+  // Validate password requirements
   const requirements = [
-    { label: "At least 8 characters", met: formData.password.length >= 8 },
-    { label: "A mix of letters and numbers", met: /[a-zA-Z]/.test(formData.password) && /\d/.test(formData.password) },
-    { label: "At least one special symbol (e.g. !@#$)", met: /[!@#$%^&*]/.test(formData.password) },
+    { label: "At least 8 characters", met: password.length >= 8 },
+    { label: "At least one lowercase letter", met: /[a-z]/.test(password) },
+    { label: "At least one uppercase letter", met: /[A-Z]/.test(password) },
+    { label: "At least one number", met: /\d/.test(password) },
+    { label: "At least one special character (@$!%*?&)", met: /[@$!%*?&]/.test(password) },
   ];
 
   return (
@@ -25,8 +108,8 @@ export default function Step3({ formData, setFormData, prevStep, submit }: any) 
               <Input
                 type={showPass ? "text" : "password"}
                 placeholder="Create a strong password"
-                value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                value={password}
+                onChange={(e) => handlePasswordChange(e.target.value)}
                 className="h-10 bg-gray-50 border-none rounded-xl pl-10 pr-10 text-sm focus:bg-white transition-all"
               />
               <button onClick={() => setShowPass(!showPass)} className="absolute right-3 top-3 text-gray-300">
@@ -35,11 +118,14 @@ export default function Step3({ formData, setFormData, prevStep, submit }: any) 
             </div>
             {/* Strength Meter */}
             <div className="flex gap-1 mt-2 px-1">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className={`h-1 flex-1 rounded-full ${i <= 2 ? 'bg-[#00C805]' : 'bg-gray-100'}`} />
+              {[1, 2, 3, 4, 5].map((i) => (
+                <div key={i} className={`h-1 flex-1 rounded-full transition-colors ${
+                  i <= passwordStrength ? strengthInfo.bgColor : 'bg-gray-100'
+                }`} />
               ))}
             </div>
-            <p className="text-[10px] mt-1 text-gray-400 font-medium px-1">Strength: <span className="text-[#00C805] font-bold">Medium</span></p>
+            <p className={`text-[10px] mt-1 font-medium px-1 ${strengthInfo.color}`}>Strength: <span className="font-bold">{strengthInfo.label}</span></p>
+            {passwordError && <p className="text-red-500 text-xs mt-1 ml-1">{passwordError}</p>}
           </div>
 
           <div>
@@ -47,16 +133,17 @@ export default function Step3({ formData, setFormData, prevStep, submit }: any) 
             <div className="relative">
               <div className="absolute left-3 top-3 text-gray-400"><Lock size={16}/></div>
               <Input
-               type={showPass ? "text" : "password"}
+               type={showConfirmPass ? "text" : "password"}
                 placeholder="Re-enter your password"
-                value={formData.confirmPassword}
-                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                value={confirmPassword}
+                onChange={(e) => handleConfirmPasswordChange(e.target.value)}
                 className="h-10 bg-gray-50 border-none rounded-xl pl-10 pr-10 text-sm focus:bg-white transition-all"
               />
-              <button onClick={() => setShowPass(!showPass)} className="absolute right-3 top-3 text-gray-300">
+              <button onClick={() => setShowConfirmPass(!showConfirmPass)} className="absolute right-3 top-3 text-gray-300">
                 <Eye size={16} />
               </button>
             </div>
+            {confirmPasswordError && <p className="text-red-500 text-xs mt-1 ml-1">{confirmPasswordError}</p>}
           </div>
 
           <div className="bg-[#F6FFF6] border border-[#E8F5E8] rounded-xl p-4 space-y-2">
@@ -79,7 +166,11 @@ export default function Step3({ formData, setFormData, prevStep, submit }: any) 
         <Button variant="outline" onClick={prevStep} className="h-10 px-4 border-gray-200 rounded-xl text-gray-500 font-bold flex gap-1 items-center text-sm">
           <ArrowLeft size={16} /> Back
         </Button>
-        <Button onClick={submit} className="h-10 flex-1 bg-[#00C805] hover:bg-[#00b304] rounded-xl text-sm font-bold flex gap-2 shadow-md shadow-green-100">
+        <Button 
+          onClick={handleSubmit} 
+          disabled={!isPasswordValid || !!passwordError || !!confirmPasswordError}
+          className="h-10 flex-1 bg-[#00C805] hover:bg-[#00b304] rounded-xl text-sm font-bold flex gap-2 shadow-md shadow-green-100 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
           Create Account <ArrowRight size={16} />
         </Button>
       </div>
