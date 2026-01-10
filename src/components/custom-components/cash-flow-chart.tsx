@@ -29,7 +29,7 @@ export function CashFlowChart({
   const netValue = cashIn - cashOut;
 
   return (
-    <div className="relative rounded-xl overflow-hidden bg-gray-100 dark:bg-slate-700 shadow-[0_2px_4px_rgba(0,0,0,0.04)] transition-shadow duration-300 ease-in-out hover:shadow-[0_8px_20px_rgba(52,211,153,0.3)]">
+    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-100 dark:bg-slate-700 shadow-[0_2px_4px_rgba(0,0,0,0.04)] transition-shadow duration-300 ease-in-out hover:shadow-[0_8px_20px_rgba(52,211,153,0.3)]">
       {/* Rotating border effect */}
       <div className="absolute inset-[-100%] animate-border-spin bg-[conic-gradient(from_0deg,transparent_0_340deg,#10B981_360deg)]" />
 
@@ -43,7 +43,7 @@ export function CashFlowChart({
           <div className="text-sm text-gray-500 dark:text-gray-400">Last 30 Days</div>
         </CardHeader>
         <CardContent className="p-4 pt-0">
-          
+
 
           {/* Cash Flow Bars */}
           <div className="space-y-3">

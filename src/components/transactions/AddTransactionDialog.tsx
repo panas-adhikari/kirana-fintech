@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
- 
+
 
 import { Button } from "@/components/ui/button";
 import {
@@ -65,7 +65,7 @@ export function AddTransactionDialog() {
         setIsSubmitting(true);
         try {
             // Call server action
-            const result = await addTransaction(values);
+            const result = await addTransaction(values as any);
             if (result.error) {
                 console.error(result.error);
                 // In a real app, show error toast
@@ -84,7 +84,7 @@ export function AddTransactionDialog() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <div className="flex items-center gap-2">
-                                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">Create New Invoice</Button>
+                <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">Create New Invoice</Button>
 
                 <DialogTrigger asChild>
                     <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">

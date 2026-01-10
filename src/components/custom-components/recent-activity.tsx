@@ -111,43 +111,60 @@ export function RecentActivity({
   };
 
   return (
-    <Card className="col-span-1 shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
-          {title}
+    <Card className="col-span-1 shadow-lg flex flex-col h-full border-none ring-1 ring-gray-200 dark:ring-slate-700">
+      <CardHeader className="pb-2">
+        <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white flex items-center justify-between">
+          <span>{title}</span>
+          <span className="text-xs font-normal text-emerald-600 dark:text-emerald-400 cursor-pointer hover:underline">View All</span>
         </CardTitle>
       </CardHeader>
-      <CardContent className="h-auto">
-        <div className="space-y-4">
+      <CardContent className="flex-1 overflow-y-auto overflow-x-hidden pr-2 scrollbar-thin scrollbar-thumb-gray-200 dark:scrollbar-thumb-slate-700 hover:scrollbar-thumb-gray-300 transition-colors max-h-[350px]">
+        <style jsx>{`
+          .overflow-y-auto::-webkit-scrollbar {
+            width: 4px;
+          }
+          .overflow-y-auto::-webkit-scrollbar-track {
+            background: transparent;
+          }
+          .overflow-y-auto::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+          }
+          :global(.dark) .overflow-y-auto::-webkit-scrollbar-thumb {
+            background: #334155;
+          }
+        `}</style>
+        <div className="space-y-1">
           {displayActivities.map((activity) => (
             <div
               key={activity.id}
-              className="flex items-start justify-between py-3 border-b border-gray-100 dark:border-slate-700 last:border-b-0 activity-item"
+              className="flex items-start justify-between py-2 border-b border-gray-100 dark:border-slate-700 last:border-b-0 activity-item group cursor-pointer"
               style={{
-    padding: '10px',
-    border: '10px solid #ffffffff',
-    borderRadius: '8px',
-    marginBottom: '5px',
-    transition: 'box-shadow 0.3s ease',
-  }}
-  onMouseEnter={(e) => {
-    e.currentTarget.style.boxShadow =
-      activity.trend === 'positive'
-        ? '0 4px 12px rgba(52,211,153,0.3)'   // green shadow
-        : '0 4px 12px rgba(248,113,113,0.3)'; // red shadow
-  }}
-  onMouseLeave={(e) => {
-    e.currentTarget.style.boxShadow = 'none';
-  }}
+                padding: '8px',
+                borderRadius: '8px',
+                marginBottom: '2px',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow =
+                  activity.trend === 'positive'
+                    ? '0 2px 8px rgba(52,211,153,0.2)'   // green shadow
+                    : '0 2px 8px rgba(248,113,113,0.2)'; // red shadow
+                e.currentTarget.classList.add('bg-gray-50', 'dark:bg-slate-700/50');
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.classList.remove('bg-gray-50', 'dark:bg-slate-700/50');
+              }}
             >
-              <div className="flex items-start flex-1">
+              <div className="flex items-center flex-1 min-w-0">
                 {/* Icon */}
                 <div
-                  className={`mr-3 p-2 rounded-lg ${getIconBackground(
+                  className={`mr-3 p-1.5 rounded-lg ${getIconBackground(
                     activity.trend
                   )} flex-shrink-0`}
                 >
-                  {activity.icon || <FileText className="w-4 h-4" />}
+                  {activity.icon || <FileText className="w-3.5 h-3.5" />}
                 </div>
 
                 {/* Content */}

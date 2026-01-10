@@ -54,12 +54,13 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-6 justify-center"
             >
               <Link href="/register">
-                <Button size="lg" className="bg-brand-primary text-white px-10 py-8 text-xl rounded-[12px] hover:bg-[#153427] transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
-                  Get Started Now
+                <Button size="lg" className="bg-brand-primary text-white px-10 py-8 text-xl rounded-[12px] hover:bg-[#153427] transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 w-full sm:w-auto">
+                  Register Your Business
                 </Button>
               </Link>
-              <Link href="/login">
-                <Button size="lg" variant="outline" className="border-brand-primary text-brand-primary bg-brand-secondary/30 px-10 py-8 text-xl rounded-[12px] hover:bg-brand-secondary/50 transition-all hover:-translate-y-1">
+
+              <Link href="/login" className="sm:hidden">
+                <Button size="lg" variant="link" className="text-brand-primary font-bold">
                   Sign In to Dashboard
                 </Button>
               </Link>

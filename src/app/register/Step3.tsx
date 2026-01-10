@@ -14,7 +14,7 @@ export default function Step3({ formData, setFormData, prevStep, submit }: any) 
 
   const handlePasswordChange = (value: string) => {
     setPassword(value);
-    
+
     // Validate on change
     const result = registerPasswordValidator(value);
     setPasswordError(result.error ? result.message : "");
@@ -22,7 +22,7 @@ export default function Step3({ formData, setFormData, prevStep, submit }: any) 
 
   const handleConfirmPasswordChange = (value: string) => {
     setConfirmPassword(value);
-    
+
     // Check if passwords match
     if (value && password && value !== password) {
       setConfirmPasswordError("Passwords do not match");
@@ -36,7 +36,7 @@ export default function Step3({ formData, setFormData, prevStep, submit }: any) 
   const handleSubmit = () => {
     // Final validation
     const passwordValidation = registerPasswordValidator(password);
-    
+
     if (passwordValidation.error) {
       setPasswordError(passwordValidation.message);
       return;
@@ -52,25 +52,27 @@ export default function Step3({ formData, setFormData, prevStep, submit }: any) 
       return;
     }
 
-    setFormData({
+    const finalData = {
       ...formData,
       password: password,
       confirmPassword: confirmPassword,
-    });
+    };
 
-    submit();
+    setFormData(finalData);
+
+    submit(finalData);
   };
 
   // Calculate password strength based on criteria met
   const passwordStrength = useMemo(() => {
     let strength = 0;
-    
+
     if (password.length >= 8) strength++;
     if (/[a-z]/.test(password)) strength++;
     if (/[A-Z]/.test(password)) strength++;
     if (/\d/.test(password)) strength++;
     if (/[@$!%*?&]/.test(password)) strength++;
-    
+
     return strength;
   }, [password]);
 
@@ -119,9 +121,8 @@ export default function Step3({ formData, setFormData, prevStep, submit }: any) 
             {/* Strength Meter */}
             <div className="flex gap-1 mt-2 px-1">
               {[1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className={`h-1 flex-1 rounded-full transition-colors ${
-                  i <= passwordStrength ? strengthInfo.bgColor : 'bg-gray-100'
-                }`} />
+                <div key={i} className={`h-1 flex-1 rounded-full transition-colors ${i <= passwordStrength ? strengthInfo.bgColor : 'bg-gray-100'
+                  }`} />
               ))}
             </div>
             <p className={`text-[10px] mt-1 font-medium px-1 ${strengthInfo.color}`}>Strength: <span className="font-bold">{strengthInfo.label}</span></p>
@@ -131,9 +132,9 @@ export default function Step3({ formData, setFormData, prevStep, submit }: any) 
           <div>
             <label className="block text-[11px] font-bold text-gray-900 mb-1.5 ml-1">Confirm Password</label>
             <div className="relative">
-              <div className="absolute left-3 top-3 text-gray-400"><Lock size={16}/></div>
+              <div className="absolute left-3 top-3 text-gray-400"><Lock size={16} /></div>
               <Input
-               type={showConfirmPass ? "text" : "password"}
+                type={showConfirmPass ? "text" : "password"}
                 placeholder="Re-enter your password"
                 value={confirmPassword}
                 onChange={(e) => handleConfirmPasswordChange(e.target.value)}
@@ -166,8 +167,8 @@ export default function Step3({ formData, setFormData, prevStep, submit }: any) 
         <Button variant="outline" onClick={prevStep} className="h-10 px-4 border-gray-200 rounded-xl text-gray-500 font-bold flex gap-1 items-center text-sm">
           <ArrowLeft size={16} /> Back
         </Button>
-        <Button 
-          onClick={handleSubmit} 
+        <Button
+          onClick={handleSubmit}
           disabled={!isPasswordValid || !!passwordError || !!confirmPasswordError}
           className="h-10 flex-1 bg-[#00C805] hover:bg-[#00b304] rounded-xl text-sm font-bold flex gap-2 shadow-md shadow-green-100 disabled:opacity-50 disabled:cursor-not-allowed"
         >

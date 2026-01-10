@@ -1,74 +1,71 @@
 'use server';
 
 import { createServerClient } from '@/lib/supabase/server';
-import { Transaction } from '@/types';
+import { Transaction, TransactionInput } from '@/types';
 import { revalidatePath } from 'next/cache';
 
-// NOTE: using createClient usually implies Server Actions or API routes for write operations
-// if we want to call this from client components, we should use the client-side supabase instance.
-// But for "server actions" we use the server one.
-// Let's implement this as Server Actions (using 'use server') or just helper functions called by Server Actions.
-// For simplicity, I will make this a file with Server Actions.
-
-export async function addTransaction(formData: { amount: string; type: 'sale' | 'expense' | 'purchase' | 'credit'; description?: string; payment_method?: string }) {
+export async function addTransaction(formData: TransactionInput) {
     const supabase = await createServerClient();
 
     // Get current user
+    console.log('[addTransaction] Starting transaction creation');
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
+        console.error('[addTransaction] Unauthorized: No user found');
         return { error: 'Unauthorized' };
     }
 
     // In a real app we would validate the store relationship
     // For now, inserting with some defaults
 
-    const amount = parseFloat(formData.amount);
-    if (isNaN(amount)) return { error: 'Invalid amount' };
+    // We calculate total amount for the main transaction record
+    const totalAmount = formData.items.reduce((sum, item) => sum + (item.quantity * item.unit_price_at_sale), 0);
 
-    const newTransaction = {
-        transaction_type: formData.type, // 'sale', 'expense'
-        amount: amount,
+    const transactionToInsert = {
+        transaction_type: 'sale', // We might need to map formData.type to this
+        amount: totalAmount,
         currency: 'NPR',
-        description: formData.description,
-        payment_method: 'cash', // Default or from form
-        status: 'completed',
-        created_by: user.id,
-        // Fetch store_id for the user
-        // store_id: user.store_id // We need store_id.
+        description: formData.items.map(i => i.item_description).join(', '),
+        payment_method: formData.payment_method.toLowerCase(),
+        status: formData.payment_status === 'Paid' ? 'completed' : 'pending',
+        created_by: formData.user_id,
+        branch_id: formData.branch_id,
     };
 
     // Fetch user's store
+    // Fetch user's store
+    console.log('[addTransaction] Fetching store for user:', user.id);
     const { data: userData, error: userError } = await supabase
         .from('users')
-        .select('store_id')
+        .select('branch:branches(store_id)')
         .eq('id', user.id)
         .single();
 
-    if (userError || !userData?.store_id) {
-        // Fallback or error
-        // For now, if no store found, we can't insert mostly.
-        // But for development, if tables allow null store_id, maybe okay.
-        // Let's assume there's a store. If not, we might error out.
-        // For the sake of "everything required", I should make sure this works.
-        // If I can't find a store, I'll error.
+    const storeId = (userData?.branch as any)?.store_id;
+
+    if (userError || !storeId) {
         console.error("No store found for user", user.id);
         return { error: 'No store associated with this user.' };
     }
 
-    const transactionToInsert = {
-        ...newTransaction,
-        store_id: userData.store_id
-    };
-
+    console.log('[addTransaction] Inserting transaction for storeId:', storeId);
     const { data, error } = await supabase
         .from('transactions')
-        .insert([transactionToInsert])
+        .insert([{
+            ...transactionToInsert,
+            store_id: storeId
+        }])
         .select();
 
     if (error) {
         console.error('Error adding transaction:', error);
         return { error: error.message };
     }
+
+    console.log('[addTransaction] Successfully added transaction');
+
+    // Note: In a production app, we would also insert the individual items into a 'transaction_items' table.
+    // For now, we are just storing the main transaction record.
 
     revalidatePath('/dashboard/transactions');
     revalidatePath('/dashboard');
@@ -81,6 +78,7 @@ export async function getTransactions(): Promise<Transaction[]> {
 
     if (!user) return [];
 
+    console.log('[getTransactions] Fetching transactions for user:', user.id);
     const { data, error } = await supabase
         .from('transactions')
         .select('*')
@@ -91,6 +89,8 @@ export async function getTransactions(): Promise<Transaction[]> {
         console.error('Error fetching transactions:', error);
         return [];
     }
+
+    if (data) console.log(`[getTransactions] Fetched ${data.length} transactions`);
 
     return data as Transaction[];
 }

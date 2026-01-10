@@ -1,15 +1,37 @@
 'use client';
 
-import React from 'react';
-import { Search, Bell, Clock } from 'lucide-react';
+import React, { useState } from 'react';
+import { Search, Bell, Clock, LogOut } from 'lucide-react';
 import { Input } from '@/components/ui/input';
+import { logoutUser } from '@/lib/services/authServices';
+import { useRouter } from 'next/navigation';
+
+import { useAuthStore } from '@/store/useAuthStore';
 
 interface NavbarProps {
-  userName?: string;
   userAvatar?: string;
 }
 
-export function Navbar({ userName = 'Hari', userAvatar }: NavbarProps) {
+export function Navbar({ userAvatar }: NavbarProps) {
+  const router = useRouter();
+  const [loggingOut, setLoggingOut] = useState(false);
+  const { profile } = useAuthStore();
+  const userName = profile?.username || 'User';
+
+  const handleLogout = async () => {
+    try {
+      setLoggingOut(true);
+      await logoutUser();
+      // Clear store on logout
+      useAuthStore.getState().clearAuth();
+      router.push('/login');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    } finally {
+      setLoggingOut(false);
+    }
+  };
+
   return (
     <>
       <style jsx global>{`
@@ -71,23 +93,34 @@ export function Navbar({ userName = 'Hari', userAvatar }: NavbarProps) {
                 <Clock className="w-5 h-5" />
               </button>
 
-              {/* User Avatar */}
-              <button className="flex items-center space-x-2 p-1 pr-3 rounded-full border border-transparent hover:bg-gray-50 dark:hover:bg-slate-700/50 hover:border-gray-200 dark:hover:border-slate-600 transition-all">
-                {userAvatar ? (
-                  <img
-                    src={userAvatar}
-                    alt={userName}
-                    className="h-8 w-8 rounded-full object-cover ring-2 ring-white dark:ring-slate-700"
-                  />
-                ) : (
-                  <div className="h-8 w-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-sm font-medium shadow-sm">
-                    {userName.charAt(0).toUpperCase()}
-                  </div>
-                )}
-                <span className="hidden sm:block text-sm font-medium text-gray-700 dark:text-gray-200">
-                  {userName}
-                </span>
-              </button>
+              {/* User Avatar & Logout */}
+              <div className="flex items-center space-x-3">
+                <button className="flex items-center space-x-2 p-1 pr-3 rounded-full border border-transparent hover:bg-gray-50 dark:hover:bg-slate-700/50 hover:border-gray-200 dark:hover:border-slate-600 transition-all">
+                  {userAvatar ? (
+                    <img
+                      src={userAvatar}
+                      alt={userName}
+                      className="h-8 w-8 rounded-full object-cover ring-2 ring-white dark:ring-slate-700"
+                    />
+                  ) : (
+                    <div className="h-8 w-8 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-sm font-medium shadow-sm">
+                      {userName.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                  <span className="hidden sm:block text-sm font-medium text-gray-700 dark:text-gray-200">
+                    {userName}
+                  </span>
+                </button>
+
+                <button
+                  onClick={handleLogout}
+                  disabled={loggingOut}
+                  className="p-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 text-gray-500 dark:text-gray-400 transition-colors hover:text-red-600 dark:hover:text-red-400"
+                  title="Logout"
+                >
+                  <LogOut className={`w-5 h-5 ${loggingOut ? 'animate-pulse' : ''}`} />
+                </button>
+              </div>
             </div>
           </div>
         </div>

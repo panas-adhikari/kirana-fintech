@@ -8,7 +8,7 @@ export default function DashboardLoading() {
         <div className="min-h-screen flex flex-row bg-gray-50 dark:bg-slate-900">
             <Sidebar />
             <div className="flex flex-1 flex-col">
-                <Navbar userName="Loading..." />
+                <Navbar />
                 <div className="flex-1 flex flex-col overflow-auto">
                     <DashboardWrapper padding="lg" margin="md">
                         <div className="mb-8 flex justify-between items-center">
