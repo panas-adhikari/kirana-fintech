@@ -1,10 +1,12 @@
+// components/StaffManagementView.tsx
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useAuthStore } from '@/store/useAuthStore';
 import { User, UserRole } from '@/types';
 import { getStaffMembers, addStaffMember } from '@/lib/services/staffService';
 import { getAdminBranches } from '@/lib/services/storeManagementService';
+import { AddStaffModal } from '@/components/custom-components/AddStaffModal';
 import {
     Table,
     TableBody,
@@ -16,16 +18,6 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger
-} from '@/components/ui/dialog';
 import {
     Select,
     SelectContent,
@@ -33,7 +25,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Users, UserPlus, Search, Filter, Loader2, CheckCircle2 } from 'lucide-react';
+import { Users, Search, Filter, Loader2 } from 'lucide-react';
 
 export function StaffManagementView() {
     const { profile } = useAuthStore();
@@ -45,22 +37,7 @@ export function StaffManagementView() {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedBranchFilter, setSelectedBranchFilter] = useState<string>('all');
 
-    // Add Staff Modal
-    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    const [success, setSuccess] = useState(false);
-
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        password: '',
-        role: 'staff' as UserRole,
-        branchId: ''
-    });
-
     const isAdmin = profile?.role === 'admin';
-    const isOwnerOrManager = profile?.role === 'owner' || profile?.role === 'manager';
 
     useEffect(() => {
         loadInitialData();
@@ -72,11 +49,9 @@ export function StaffManagementView() {
         setLoading(true);
         const storeId = profile.branch.store_id;
 
-        // Load staff
         const staffRes = await getStaffMembers(storeId);
         if (staffRes.data) setStaff(staffRes.data);
 
-        // Load branches if admin
         if (isAdmin) {
             const branchesRes = await getAdminBranches(storeId);
             if (branchesRes.data) {
@@ -85,66 +60,55 @@ export function StaffManagementView() {
                     branch_name: b.branch_name
                 })));
             }
-        } else if (profile.branch_id) {
-            // Pre-select branch for owners/managers
-            setFormData(prev => ({ ...prev, branchId: profile.branch_id }));
         }
 
         setLoading(false);
     };
 
-    const handleAddStaff = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!profile?.branch?.store_id) return;
+    // Memoize filtered staff to prevent recalculation on unrelated re-renders
+    const filteredStaff = useMemo(() => {
+        return staff.filter(member => {
+            const matchesSearch = member.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                member.role.toLowerCase().includes(searchTerm.toLowerCase());
+            const matchesBranch = selectedBranchFilter === 'all' || member.branch_id === selectedBranchFilter;
+            return matchesSearch && matchesBranch;
+        });
+    }, [staff, searchTerm, selectedBranchFilter]);
 
-        setError(null);
-        setSuccess(false);
-        setIsSubmitting(true);
+    // Stable callback for adding staff
+    const handleAddStaff = useCallback(async (data: {
+        name: string;
+        email: string;
+        password: string;
+        role: UserRole;
+        branchId: string;
+    }) => {
+        if (!profile?.branch?.store_id) {
+            return { success: false, error: 'No store found' };
+        }
 
         try {
             const res = await addStaffMember(
-                formData.email,
-                formData.password,
-                formData.name,
-                formData.role,
-                // profile.branch.store_id,
-                formData.branchId
+                data.email,
+                data.password,
+                data.name,
+                data.role,
+                data.branchId
             );
 
             if (res.error) {
-                setError(res.error);
-            } else {
-                setSuccess(true);
-                // Refresh list
-                const staffRes = await getStaffMembers(profile.branch.store_id);
-                if (staffRes.data) setStaff(staffRes.data);
-
-                // Reset form after a delay or success state
-                setTimeout(() => {
-                    setIsAddModalOpen(false);
-                    setSuccess(false);
-                    setFormData({
-                        name: '',
-                        email: '',
-                        password: '',
-                        role: 'staff',
-                        branchId: isAdmin ? '' : (profile.branch_id || '')
-                    });
-                }, 2000);
+                return { success: false, error: res.error };
             }
-        } catch (err: any) {
-            setError(err.message || 'An error occurred');
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
 
-    const filteredStaff = staff.filter(member => {
-        const matchesSearch = member.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            member.role.toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesBranch = selectedBranchFilter === 'all' || member.branch_id === selectedBranchFilter;
-        return matchesSearch && matchesBranch;
-    });
+            // Refresh list
+            const staffRes = await getStaffMembers(profile.branch.store_id);
+            if (staffRes.data) setStaff(staffRes.data);
+
+            return { success: true };
+        } catch (err: any) {
+            return { success: false, error: err.message || 'An error occurred' };
+        }
+    }, [profile?.branch?.store_id]);
 
     return (
         <div className="space-y-6">
@@ -157,126 +121,13 @@ export function StaffManagementView() {
                     <p className="text-gray-500">Manage your store team and permissions</p>
                 </div>
 
-                <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
-                    <DialogTrigger asChild>
-                        <Button className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2 py-6 px-6 rounded-xl shadow-lg shadow-emerald-900/10">
-                            <UserPlus className="w-5 h-5" />
-                            Add New Staff
-                        </Button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[425px] rounded-2xl">
-                        <DialogHeader>
-                            <DialogTitle>Add Staff Member</DialogTitle>
-                            <DialogDescription>
-                                Create a new account for your staff member. They can log in immediately.
-                            </DialogDescription>
-                        </DialogHeader>
-
-                        {success ? (
-                            <div className="py-10 flex flex-col items-center text-center">
-                                <CheckCircle2 className="w-16 h-16 text-emerald-500 mb-4" />
-                                <h3 className="text-xl font-bold text-gray-900">Staff Added Successfully!</h3>
-                                <p className="text-gray-500 mt-2">The account has been created.</p>
-                            </div>
-                        ) : (
-                            <form onSubmit={handleAddStaff} className="space-y-4 py-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="name">Full Name</Label>
-                                    <Input
-                                        id="name"
-                                        placeholder="John Doe"
-                                        value={formData.name}
-                                        onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                        required
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="email">Email Address</Label>
-                                    <Input
-                                        id="email"
-                                        type="email"
-                                        placeholder="john@example.com"
-                                        value={formData.email}
-                                        onChange={e => setFormData({ ...formData, email: e.target.value })}
-                                        required
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="password">Initial Password</Label>
-                                    <Input
-                                        id="password"
-                                        type="password"
-                                        placeholder="••••••••"
-                                        value={formData.password}
-                                        onChange={e => setFormData({ ...formData, password: e.target.value })}
-                                        required
-                                    />
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <Label>Role</Label>
-                                        <Select
-                                            value={formData.role}
-                                            onValueChange={(v: UserRole) => setFormData({ ...formData, role: v })}
-                                        >
-                                            <SelectTrigger>
-                                                <SelectValue />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="staff">Staff</SelectItem>
-                                                <SelectItem value="manager">Manager</SelectItem>
-                                                {isAdmin && <SelectItem value="owner">Owner</SelectItem>}
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label>Branch</Label>
-                                        {isAdmin ? (
-                                            <Select
-                                                value={formData.branchId}
-                                                onValueChange={v => setFormData({ ...formData, branchId: v })}
-                                            >
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="Select Branch" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    {branches.map(b => (
-                                                        <SelectItem key={b.branch_id} value={b.branch_id}>
-                                                            {b.branch_name}
-                                                        </SelectItem>
-                                                    ))}
-                                                </SelectContent>
-                                            </Select>
-                                        ) : (
-                                            <Input value={profile?.branch?.name || ''} disabled readOnly />
-                                        )}
-                                    </div>
-                                </div>
-
-                                {error && (
-                                    <div className="bg-red-50 text-red-700 p-3 rounded-lg text-sm border border-red-100 font-medium">
-                                        {error}
-                                    </div>
-                                )}
-
-                                <DialogFooter>
-                                    <Button
-                                        type="submit"
-                                        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-6 mt-4"
-                                        disabled={isSubmitting}
-                                    >
-                                        {isSubmitting ? (
-                                            <>
-                                                <Loader2 className="w-5 h-5 animate-spin mr-2" />
-                                                Creating Account...
-                                            </>
-                                        ) : 'Create Staff Member'}
-                                    </Button>
-                                </DialogFooter>
-                            </form>
-                        )}
-                    </DialogContent>
-                </Dialog>
+                <AddStaffModal
+                    isAdmin={isAdmin}
+                    branches={branches}
+                    defaultBranchId={profile?.branch_id || ''}
+                    defaultBranchName={profile?.branch?.name || ''}
+                    onSubmit={handleAddStaff}
+                />
             </div>
 
             <Card className="border-none shadow-sm rounded-2xl overflow-hidden">

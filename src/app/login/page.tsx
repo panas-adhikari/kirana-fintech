@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { APP_NAME } from '@/config/constants';
-import { validator } from '@/utils/inputValidator';
+
 import { LoginFormData } from '@/types';
 import { loginUser } from '@/lib/services/authServices';
 
@@ -17,52 +17,15 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
     // const [rememberMe, setRememberMe] = useState(false);
 
-    const [errors, setErrors] = useState<LoginFormData>({
-        email: "",
-        password: ""
-    });
-
-    const [passwordValid, setPasswordValid] = useState<boolean | null>(null);
+    const [errors, setErrors] = useState<Partial<LoginFormData>>({});
 
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        if (email) {
-            const validationResult = validator("email", email);
-            setErrors(prev => ({
-                ...prev,
-                email: validationResult?.message || ""
-            }));
-        } else {
-            setErrors(prev => ({ ...prev, email: "" }));
-        }
-    }, [email]);
-
-    useEffect(() => {
-        if (password) {
-            const validationResult = validator("password", password);
-            setErrors(prev => ({
-                ...prev,
-                password: validationResult?.message || ""
-            }));
-            setPasswordValid(!validationResult.error);
-        } else {
-            setErrors(prev => ({ ...prev, password: "" }));
-            setPasswordValid(null);
-        }
-    }, [password]);
-
+   
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Final validation before submission
-        const emailValidation = validator("email", email);
-        const passValidation = validator("password", password);
-
-        if (emailValidation.error || passValidation.error) {
-            return;
-        }
-
+       
         setLoading(true);
 
         try {
@@ -107,9 +70,7 @@ export default function LoginPage() {
                             className={`transition-all ${errors.email ? 'border-red-500' : ''}`}
                             placeholder="you@example.com"
                         />
-                        {errors.email && (
-                            <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-                        )}
+                       
                     </div>
 
                     <div>
@@ -133,12 +94,10 @@ export default function LoginPage() {
                             value={password}
                             onChange={e => setPassword(e.target.value)}
                             required
-                            className={`transition-all ${passwordValid === true ? 'border-green-500' : (errors.password ? 'border-red-500' : '')}`}
+                            className={`transition-all ${errors.password ? 'border-red-500' : ''}`}
                             placeholder="••••••••"
                         />
-                        {errors.password && (
-                            <p className={`${passwordValid ? 'text-blue-500' : 'text-red-500'} text-sm mt-1`}>{errors.password}</p>
-                        )}
+                        
                     </div>
 
                     <Button type="submit" className="w-full bg-emerald-700 text-white hover:bg-emerald-800" disabled={loading || !!errors.email || !!errors.password}>
