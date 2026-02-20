@@ -46,7 +46,7 @@ export const registerPasswordValidator = (password: string): ValidationResult =>
     }
 
     // If all pass
-    return { error: false, message: "Good to go" };
+    return { error: false, message: "" };
 };
 
 /**
@@ -78,12 +78,25 @@ export const loginEmailValidator = (email: string): ValidationResult => {
     return { error: false, message: "" };
 };
 
+export const loginPasswordValidator = (password: string): ValidationResult => {
+    // Simple password validation for login - just check if not empty
+    if (!password || password.trim().length === 0) {
+        return { error: true, message: "Password is required" };
+    }
+
+    return { error: false, message: "" };
+};
+
+// utils/inputValidator.ts
+
 export const validator = (validationType: string, value: string) => {
     switch (validationType) {
         case "email":
             return registerEmailValidator(value);
         case "password":
-            return registerPasswordValidator(value);
+            return registerPasswordValidator(value); // ← Changed from loginPasswordValidator
+        case "loginPassword":
+            return loginPasswordValidator(value);
         default:
             return { error: true, message: "Invalid validation type" };
     }

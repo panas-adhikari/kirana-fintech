@@ -1,0 +1,13 @@
+{
+    "rules": {
+        "notifications": {
+            "$userId": {
+                ".read": "auth != null && auth.uid === $userId",
+                ".write": "auth != null && auth.uid === $userId",
+                "$notificationId": {
+                    ".validate": "newData.hasChildren(['id', 'type', 'created_at', 'read'])"
+                }
+            }
+        }
+    }
+}

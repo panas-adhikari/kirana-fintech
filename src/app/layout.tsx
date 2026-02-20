@@ -1,7 +1,10 @@
+export const dynamic = 'force-dynamic';
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { APP_NAME, APP_DESCRIPTION } from "@/config/constants";
-import Header from "@/components/layout/Header";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: APP_NAME,
@@ -14,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-       <body className="min-h-screen bg-gray-50 dark:bg-slate-900">
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.className} min-h-screen bg-background antialiased`}>
         {children}
       </body>
     </html>

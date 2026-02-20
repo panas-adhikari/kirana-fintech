@@ -29,35 +29,24 @@ export function CashFlowChart({
   const netValue = cashIn - cashOut;
 
   return (
-    <div className="relative rounded-xl overflow-hidden bg-gray-100 dark:bg-slate-700 shadow-[0_2px_4px_rgba(0,0,0,0.04)] transition-shadow duration-300 ease-in-out hover:shadow-[0_8px_20px_rgba(52,211,153,0.3)]">
+    <div className="relative h-full w-full rounded-xl overflow-hidden bg-gray-100 dark:bg-slate-700 shadow-[0_2px_4px_rgba(0,0,0,0.04)] transition-shadow duration-300 ease-in-out hover:shadow-[0_8px_20px_rgba(52,211,153,0.3)]">
       {/* Rotating border effect */}
       <div className="absolute inset-[-100%] animate-border-spin bg-[conic-gradient(from_0deg,transparent_0_340deg,#10B981_360deg)]" />
 
       {/* Inner content container */}
       <Card className="absolute inset-[1.5px] rounded-[10px] border-none shadow-none bg-white dark:bg-slate-800">
         <style jsx global>{cssStyles}</style>
-        <CardHeader className="flex flex-row items-center justify-between pb-2">
+        <CardHeader className="flex flex-col items-start p-4 pb-2">
           <CardTitle className="text-lg font-semibold text-gray-800 dark:text-white">
             Cash Flow
           </CardTitle>
           <div className="text-sm text-gray-500 dark:text-gray-400">Last 30 Days</div>
         </CardHeader>
-        <CardContent>
-          {/* Net Value Display */}
-          <div className="flex justify-end mb-4">
-            <span className="text-sm font-medium text-green-700 dark:text-green-400">
-              Net:{' '}
-            </span>
-            <span className="text-sm font-bold text-green-700 dark:text-green-400 ml-1">
-              NPR {netValue.toLocaleString('en-US', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}
-            </span>
-          </div>
+        <CardContent className="p-4 pt-0">
+
 
           {/* Cash Flow Bars */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             {/* Cash In */}
             <div>
               <div className="flex justify-between text-sm font-medium text-green-800 dark:text-green-300 mb-2">
@@ -98,7 +87,7 @@ export function CashFlowChart({
           </div>
 
           {/* Summary Footer */}
-          <div className="mt-8 pt-6 border-t border-gray-200 dark:border-slate-700 grid grid-cols-3 gap-4 text-center text-sm">
+          <div className="mt-4 pt-5 border-t border-gray-200 dark:border-slate-700 grid grid-cols-3 gap-2 text-center text-sm">
             <div>
               <div className="text-gray-500 dark:text-gray-400 text-xs mb-1">
                 Opening Balance

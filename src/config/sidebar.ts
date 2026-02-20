@@ -1,5 +1,11 @@
 import { ReactElement } from "react";
-import { FaTachometerAlt, FaFileInvoice, FaMoneyBillAlt, FaMoneyCheckAlt, FaUsers, FaUserAlt, FaChartLine, FaCog } from "react-icons/fa";
+
+// Updated Icon Imports to match the screenshot
+import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard'; // Matches the 4-square dashboard
+import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined'; // Matches Dealers (Shop icon)
+import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline'; // Matches Customers (Outline style)
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'; // Matches Settings
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline'; // Matches Help Center
 
 export interface SidebarChild {
   label: string;
@@ -8,7 +14,7 @@ export interface SidebarChild {
 
 export interface SidebarMenuItem {
   title: string;
-  icon: React.ComponentType;  // Icon should be a React element
+  icon: React.ComponentType;
   href: string;
   children?: SidebarChild[];
 }
@@ -17,56 +23,27 @@ export interface SidebarMenuItem {
 export const sidebarMenu: SidebarMenuItem[] = [
   {
     title: "Dashboard",
-    icon: FaTachometerAlt,  // Use the React component, not the JSX element
+    icon: SpaceDashboardIcon,
     href: "/dashboard",
   },
   {
-    title: "Invoices",
-    icon: FaFileInvoice,  // Use the React component
-    href: "/invoices",
-    children: [
-      { label: "Paid", href: "/invoices/paid" },
-      { label: "Pending", href: "/invoices/pending" },
-      { label: "Overdue", href: "/invoices/overdue" },
-    ],
-  },
-  {
-    title: "Expenses",
-    icon: FaMoneyBillAlt,  // Use the React component
-    href: "/expenses",
-  },
-  {
-    title: "Incomes",
-    icon: FaMoneyCheckAlt,  // Use the React component
-    href: "/incomes",
-  },
-  {
     title: "Dealers",
-    icon: FaUsers,  // Use the React component
-    href: "/dealers",
+    icon: StorefrontOutlinedIcon,
+    href: "/dashboard/dealers",
   },
   {
     title: "Customers",
-    icon: FaUserAlt,  // Use the React component
-    href: "/customers",
-  },
-  {
-    title: "Reports",
-    icon: FaChartLine,  // Use the React component
-    href: "/reports",
-    children: [
-      { label: "Sales", href: "/reports/sales" },
-      { label: "Expenses", href: "/reports/expenses" },
-    ],
+    icon: PeopleOutlineIcon,
+    href: "/dashboard/customers",
   },
   {
     title: "Settings",
-    icon: FaCog,  // Use the React component
-    href: "/settings",
+    icon: SettingsOutlinedIcon,
+    href: "/dashboard/settings",
   },
   {
-    title: "Transactions",
-    icon: FaFileInvoice,
-    href: "/dashboard/transactions",
+    title: "Help Center",
+    icon: HelpOutlineIcon,
+    href: "/dashboard/help",
   },
 ];
