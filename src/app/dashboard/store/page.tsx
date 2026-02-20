@@ -16,18 +16,18 @@ export default function StorePage() {
         <DashboardPageWrapper>
             {(profile.role === 'owner' || profile.role === 'manager') && (
                 <>
-                    <div className="bg-yellow-100 p-2 text-xs font-mono border-b border-yellow-200 text-yellow-800 rounded-t-xl">
+                    {/* <div className="bg-yellow-100 p-2 text-xs font-mono border-b border-yellow-200 text-yellow-800 rounded-t-xl">
                         DEBUG: Role: {profile.role} | BranchID: {profile.branch_id || 'MISSING'}
-                    </div>
+                    </div> */}
                     <OwnerStoreView />
                 </>
             )}
 
             {profile.role === 'admin' && (
                 <>
-                    <div className="bg-blue-100 p-2 text-xs font-mono border-b border-blue-200 text-blue-800 rounded-t-xl">
+                    {/* <div className="bg-blue-100 p-2 text-xs font-mono border-b border-blue-200 text-blue-800 rounded-t-xl">
                         DEBUG: Role: {profile.role} | StoreID: {profile.branch?.store_id || 'MISSING'}
-                    </div>
+                    </div> */}
                     <AdminStoreView />
                 </>
             )}
