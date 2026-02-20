@@ -6,7 +6,7 @@ export async function createServerClient() {
 
     return createSupabaseServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON!,
         {
             cookies: {
                 getAll() {
@@ -32,7 +32,7 @@ export async function createAdminClient() {
 
     return createSupabaseServerClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,                 // keep this safe too
-        process.env.SUPABASE_SERVICE_ROLE_KEY!,    // never expose in frontend
+        process.env.SUPABASE_SERVICE_ROLE!,    // never expose in frontend
         {
             cookies: {
                 getAll() {
