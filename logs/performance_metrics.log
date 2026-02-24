@@ -1,0 +1,475 @@
+2026-02-24 05:24:45,386 - Knowledge - INFO - Created shared MongoDB connection pool
+2026-02-24 05:24:45,711 - Knowledge - INFO - Starting Knowledge Graph processing with 20 threads
+2026-02-24 05:24:45,907 - Knowledge - INFO - Initial configuration: chunk_size=65536, max_cache_size=500
+2026-02-24 05:24:46,087 - Knowledge - INFO - Knowledge Graph concurrency configuration: workers=20, max_batch_size=10, max_concurrent_llm_calls=50
+2026-02-24 05:24:47,818 - Knowledge - INFO - 🔍 _load_persisted_knowledge called - checking for Redis optimization
+2026-02-24 05:24:47,989 - Knowledge - WARNING - ❌ load_from_redis method not found - Redis support not attached
+2026-02-24 05:24:48,152 - Knowledge - INFO - load persisted knowledge: begin
+2026-02-24 05:24:48,336 - Knowledge - INFO - Loaded 0 files from persisted knowledge
+2026-02-24 05:24:48,513 - Knowledge - INFO - load persisted knowledge: end
+2026-02-24 05:24:48,667 - Knowledge - WARNING - No persisted knowledge found. Files will be queued during start()
+2026-02-24 05:24:48,832 - Knowledge - INFO - Redis support added with prefix knowledge:b2305zz:
+2026-02-24 05:24:49,189 - Knowledge - INFO - Starting knowledge initialization for ID: nC3cVR-b2305zz
+2026-02-24 05:24:49,380 - Knowledge - INFO - 🔍 Checking Redis for build_id: b2305zz
+2026-02-24 05:24:49,567 - Knowledge - INFO - 🔍 Full session ID: nC3cVR-b2305zz
+2026-02-24 05:24:49,769 - Knowledge - INFO - 🔍 Redis prefix will be: knowledge:b2305zz:
+2026-02-24 05:24:49,957 - Knowledge - INFO - 🔍 Using attached load_from_redis() method
+2026-02-24 05:24:50,115 - Knowledge - INFO - 🔍 Attempting to load knowledge from Redis...
+2026-02-24 05:24:50,306 - Knowledge - INFO - 🔍 Using derived instance_id for Redis lookup: b2305zz
+2026-02-24 05:24:50,491 - Knowledge - WARNING - ❌ No Redis cache found
+2026-02-24 05:24:50,728 - Knowledge - INFO - 📁 Loading knowledge from disk...
+2026-02-24 05:24:50,940 - Knowledge - INFO - load persisted docinfo: begin
+2026-02-24 05:24:51,133 - Knowledge - INFO - load persisted docinfo: end
+2026-02-24 05:24:51,306 - Knowledge - INFO - 🔍 _load_persisted_knowledge called - checking for Redis optimization
+2026-02-24 05:24:51,486 - Knowledge - INFO - ✅ load_from_redis method found - attempting Redis load
+2026-02-24 05:24:51,672 - Knowledge - INFO - 🔍 Attempting to load knowledge from Redis...
+2026-02-24 05:24:51,878 - Knowledge - INFO - 🔍 Using derived instance_id for Redis lookup: b2305zz
+2026-02-24 05:24:52,042 - Knowledge - WARNING - ❌ No Redis cache found
+2026-02-24 05:24:52,244 - Knowledge - INFO - ❌ Redis load returned False - falling back to file loading
+2026-02-24 05:24:52,447 - Knowledge - INFO - load persisted knowledge: begin
+2026-02-24 05:24:52,654 - Knowledge - INFO - Loaded 0 files from persisted knowledge
+2026-02-24 05:24:52,811 - Knowledge - INFO - load persisted knowledge: end
+2026-02-24 05:24:53,004 - Knowledge - INFO - 📁 Disk load complete in 2.11s
+2026-02-24 05:24:53,207 - Knowledge - INFO - Populating ingest queue with source files...
+2026-02-24 05:24:53,459 - Knowledge - INFO - Added 79 files from /app/data/T0015/325857/b2305zz/kirana-fintech to ingest queue
+2026-02-24 05:24:53,652 - Knowledge - INFO - [WEBSOCKET] Sent: Type=progress_update, Size: 159, Duration: 0ms
+2026-02-24 05:24:53,854 - Knowledge - INFO - Worker kw1 created using shared MongoDB connection pool
+2026-02-24 05:24:54,025 - Knowledge - INFO - knowledge worker kw1 start
+2026-02-24 05:24:54,026 - Knowledge - INFO - Worker kw2 created using shared MongoDB connection pool
+2026-02-24 05:24:54,210 - Knowledge - INFO - [kw1] Queue=79, InProgress=0, PendingWorkers=0/1, Completed=0/79 (0.0%)
+2026-02-24 05:24:54,330 - Knowledge - INFO - knowledge worker kw2 start
+2026-02-24 05:24:54,330 - Knowledge - INFO - Worker kw3 created using shared MongoDB connection pool
+2026-02-24 05:24:54,456 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=79, active_workers=0/2
+2026-02-24 05:24:54,569 - Knowledge - INFO - [kw2] Queue=79, InProgress=0, PendingWorkers=0/2, Completed=0/79 (0.0%)
+2026-02-24 05:24:54,661 - Knowledge - INFO - knowledge worker kw3 start
+2026-02-24 05:24:54,661 - Knowledge - INFO - Worker kw4 created using shared MongoDB connection pool
+2026-02-24 05:24:54,735 - Knowledge - INFO - Worker kw1 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/hooks/useNotifications.ts
+2026-02-24 05:24:54,867 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=79, active_workers=1/3
+2026-02-24 05:24:54,948 - Knowledge - INFO - [kw3] Queue=75, InProgress=0, PendingWorkers=1/3, Completed=0/79 (0.0%)
+2026-02-24 05:24:55,018 - Knowledge - INFO - knowledge worker kw4 start
+2026-02-24 05:24:55,018 - Knowledge - INFO - Worker kw5 created using shared MongoDB connection pool
+2026-02-24 05:24:55,099 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/hooks/useNotifications.ts (ext=.ts, size=1152)
+2026-02-24 05:24:55,205 - Knowledge - INFO - Worker kw2 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/auth/RoleGuard.tsx
+2026-02-24 05:24:55,293 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=75, active_workers=2/4
+2026-02-24 05:24:55,381 - Knowledge - INFO - [kw4] Queue=71, InProgress=0, PendingWorkers=2/4, Completed=0/79 (0.0%)
+2026-02-24 05:24:55,466 - Knowledge - INFO - knowledge worker kw5 start
+2026-02-24 05:24:55,467 - Knowledge - INFO - Worker kw6 created using shared MongoDB connection pool
+2026-02-24 05:24:55,542 - Knowledge - INFO - Worker kw1 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/hooks/useDebounce.ts
+2026-02-24 05:24:55,685 - Knowledge - INFO - Worker kw2 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/notifications/NotificationPanel.tsx
+2026-02-24 05:24:55,765 - Knowledge - INFO - Worker kw3 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/popover.tsx
+2026-02-24 05:24:55,845 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=71, active_workers=3/5
+2026-02-24 05:24:55,958 - Knowledge - INFO - [kw5] Queue=67, InProgress=0, PendingWorkers=3/5, Completed=0/79 (0.0%)
+2026-02-24 05:24:56,057 - Knowledge - INFO - knowledge worker kw6 start
+2026-02-24 05:24:56,057 - Knowledge - INFO - Worker kw7 created using shared MongoDB connection pool
+2026-02-24 05:24:56,133 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/hooks/useDebounce.ts (ext=.ts, size=390)
+2026-02-24 05:24:56,229 - Knowledge - INFO - Worker kw2 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/notifications/NotificationBell.tsx
+2026-02-24 05:24:56,318 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/popover.tsx (ext=.tsx, size=1356)
+2026-02-24 05:24:56,412 - Knowledge - INFO - Worker kw4 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/table.tsx
+2026-02-24 05:24:56,500 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=67, active_workers=4/6
+2026-02-24 05:24:56,612 - Knowledge - INFO - [kw6] Queue=63, InProgress=0, PendingWorkers=4/6, Completed=0/79 (0.0%)
+2026-02-24 05:24:56,702 - Knowledge - INFO - knowledge worker kw7 start
+2026-02-24 05:24:56,702 - Knowledge - INFO - Worker kw8 created using shared MongoDB connection pool
+2026-02-24 05:24:56,771 - Knowledge - INFO - Worker kw1 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/dashboard/AddTransactionModal.tsx
+2026-02-24 05:24:56,877 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/notifications/NotificationBell.tsx (ext=.tsx, size=1494)
+2026-02-24 05:24:56,960 - Knowledge - INFO - Worker kw3 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/skeleton.tsx
+2026-02-24 05:24:57,071 - Knowledge - INFO - Worker kw4 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/dialog.tsx
+2026-02-24 05:24:57,171 - Knowledge - INFO - Worker kw5 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/input.tsx
+2026-02-24 05:24:57,253 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=63, active_workers=5/7
+2026-02-24 05:24:57,359 - Knowledge - INFO - [kw7] Queue=59, InProgress=0, PendingWorkers=5/7, Completed=0/79 (0.0%)
+2026-02-24 05:24:57,439 - Knowledge - INFO - knowledge worker kw8 start
+2026-02-24 05:24:57,439 - Knowledge - INFO - Worker kw9 created using shared MongoDB connection pool
+2026-02-24 05:24:57,530 - Knowledge - INFO - Worker kw1 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/staff/StaffManagementView.tsx
+2026-02-24 05:24:57,610 - Knowledge - INFO - Worker kw2 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/badge.tsx
+2026-02-24 05:24:57,729 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/skeleton.tsx (ext=.tsx, size=311)
+2026-02-24 05:24:57,830 - Knowledge - INFO - Worker kw4 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/label.tsx
+2026-02-24 05:24:57,933 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/input.tsx (ext=.tsx, size=768)
+2026-02-24 05:24:58,062 - Knowledge - INFO - Worker kw6 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/custom-components/recent-activity.tsx
+2026-02-24 05:24:58,176 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=59, active_workers=6/8
+2026-02-24 05:24:58,258 - Knowledge - INFO - [kw8] Queue=55, InProgress=0, PendingWorkers=6/8, Completed=0/79 (0.0%)
+2026-02-24 05:24:58,346 - Knowledge - INFO - knowledge worker kw9 start
+2026-02-24 05:24:58,347 - Knowledge - INFO - Worker kw10 created using shared MongoDB connection pool
+2026-02-24 05:24:58,580 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/badge.tsx (ext=.tsx, size=1140)
+2026-02-24 05:24:58,695 - Knowledge - INFO - Worker kw3 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/form.tsx
+2026-02-24 05:24:58,786 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/label.tsx (ext=.tsx, size=724)
+2026-02-24 05:24:58,878 - Knowledge - INFO - Worker kw5 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/card.tsx
+2026-02-24 05:24:58,967 - Knowledge - INFO - Worker kw6 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/custom-components/dashboard-component.tsx
+2026-02-24 05:24:59,076 - Knowledge - INFO - Worker kw7 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/Footer.tsx
+2026-02-24 05:24:59,187 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=55, active_workers=7/9
+2026-02-24 05:24:59,289 - Knowledge - INFO - [kw9] Queue=51, InProgress=0, PendingWorkers=7/9, Completed=0/79 (0.0%)
+2026-02-24 05:24:59,380 - Knowledge - INFO - knowledge worker kw10 start
+2026-02-24 05:24:59,380 - Knowledge - INFO - Worker kw11 created using shared MongoDB connection pool
+2026-02-24 05:24:59,492 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/auth/RoleGuard.tsx (small file (2333 bytes))
+2026-02-24 05:24:59,564 - Knowledge - INFO - Worker kw3 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/button.tsx
+2026-02-24 05:24:59,683 - Knowledge - INFO - Worker kw4 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/select.tsx
+2026-02-24 05:24:59,762 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/card.tsx (ext=.tsx, size=1828)
+2026-02-24 05:24:59,857 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/custom-components/dashboard-component.tsx (ext=.tsx, size=1717)
+2026-02-24 05:24:59,961 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/Footer.tsx (ext=.tsx, size=1242)
+2026-02-24 05:25:00,060 - Knowledge - INFO - Worker kw8 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/Sidebar.tsx
+2026-02-24 05:25:00,159 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=51, active_workers=8/10
+2026-02-24 05:25:00,243 - Knowledge - INFO - [kw10] Queue=47, InProgress=0, PendingWorkers=8/10, Completed=0/79 (0.0%)
+2026-02-24 05:25:00,339 - Knowledge - INFO - knowledge worker kw11 start
+2026-02-24 05:25:00,339 - Knowledge - INFO - Worker kw12 created using shared MongoDB connection pool
+2026-02-24 05:25:00,672 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/button.tsx (ext=.tsx, size=1902)
+2026-02-24 05:25:00,793 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/table.tsx (small file (2859 bytes))
+2026-02-24 05:25:00,858 - Knowledge - INFO - Worker kw5 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/accordion.tsx
+2026-02-24 05:25:00,993 - Knowledge - INFO - Worker kw6 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/custom-components/AddStaffModal.tsx
+2026-02-24 05:25:01,074 - Knowledge - INFO - Worker kw7 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/Header.tsx
+2026-02-24 05:25:01,209 - Knowledge - INFO - Worker kw8 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/Navbar.tsx
+2026-02-24 05:25:01,292 - Knowledge - INFO - Worker kw9 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/transactions/TransactionTable.tsx
+2026-02-24 05:25:01,379 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=47, active_workers=9/11
+2026-02-24 05:25:01,510 - Knowledge - INFO - [kw11] Queue=43, InProgress=0, PendingWorkers=9/11, Completed=0/79 (0.0%)
+2026-02-24 05:25:01,592 - Knowledge - INFO - knowledge worker kw12 start
+2026-02-24 05:25:01,592 - Knowledge - INFO - Worker kw13 created using shared MongoDB connection pool
+2026-02-24 05:25:01,907 - Knowledge - INFO - Worker kw5 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/custom-components/cash-flow-chart.tsx
+2026-02-24 05:25:02,059 - Knowledge - INFO - Worker kw6 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/custom-components/custom-card.tsx
+2026-02-24 05:25:02,157 - Knowledge - INFO - Worker kw7 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/SidebarItem.tsx
+2026-02-24 05:25:02,292 - Knowledge - INFO - Worker kw8 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/logo/logo.tsx
+2026-02-24 05:25:02,419 - Knowledge - INFO - Worker kw9 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/store/OwnerStoreView.tsx
+2026-02-24 05:25:02,542 - Knowledge - INFO - Worker kw10 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/config/constants.ts
+2026-02-24 05:25:02,679 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=43, active_workers=10/12
+2026-02-24 05:25:02,793 - Knowledge - INFO - [kw12] Queue=39, InProgress=0, PendingWorkers=10/12, Completed=0/79 (0.0%)
+2026-02-24 05:25:02,921 - Knowledge - INFO - knowledge worker kw13 start
+2026-02-24 05:25:02,927 - Knowledge - INFO - Worker kw14 created using shared MongoDB connection pool
+2026-02-24 05:25:03,077 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/accordion.tsx (small file (2015 bytes))
+2026-02-24 05:25:03,346 - Knowledge - INFO - [LLM_CALL] Completed: AddTransactionModal.tsx:chunk1, Duration: 4881ms, PromptTokens: 6678, CompletionTokens: 319, Cost: $0.00080
+2026-02-24 05:25:03,384 - Knowledge - INFO - Worker kw7 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/DashboardPageWrapper.tsx
+2026-02-24 05:25:03,487 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/logo/logo.tsx (ext=.tsx, size=391)
+2026-02-24 05:25:03,600 - Knowledge - INFO - Worker kw9 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/store/AdminStoreView.tsx
+2026-02-24 05:25:03,708 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/config/constants.ts (ext=.ts, size=1813)
+2026-02-24 05:25:03,908 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=39, active_workers=11/13
+2026-02-24 05:25:03,986 - Knowledge - INFO - [kw13] Queue=35, InProgress=0, PendingWorkers=11/13, Completed=0/79 (0.0%)
+2026-02-24 05:25:04,081 - Knowledge - INFO - knowledge worker kw14 start
+2026-02-24 05:25:04,087 - Knowledge - INFO - Worker kw15 created using shared MongoDB connection pool
+2026-02-24 05:25:04,298 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/dashboard/AddTransactionModal.tsx
+2026-02-24 05:25:04,299 - Knowledge - INFO - Worker kw11 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/transactions/page.tsx
+2026-02-24 05:25:04,299 - Knowledge - INFO - [LLM_CALL] Completed: NotificationPanel.tsx:chunk1, Duration: 3624ms, PromptTokens: 2666, CompletionTokens: 324, Cost: $0.00040
+2026-02-24 05:25:04,381 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/Header.tsx (small file (2458 bytes))
+2026-02-24 05:25:04,453 - Knowledge - INFO - Worker kw8 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/transactions/AddTransactionDialog.tsx
+2026-02-24 05:25:04,536 - Knowledge - INFO - Worker kw9 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/animations/animations.tsx
+2026-02-24 05:25:04,632 - Knowledge - INFO - Worker kw10 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/config/sidebar.ts
+2026-02-24 05:25:04,839 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=35, active_workers=12/14
+2026-02-24 05:25:04,910 - Knowledge - INFO - [kw14] Queue=31, InProgress=0, PendingWorkers=12/14, Completed=0/79 (0.0%)
+2026-02-24 05:25:05,001 - Knowledge - INFO - knowledge worker kw15 start
+2026-02-24 05:25:05,001 - Knowledge - INFO - Worker kw16 created using shared MongoDB connection pool
+2026-02-24 05:25:05,278 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/transactions/page.tsx (ext=.tsx, size=1016)
+2026-02-24 05:25:05,397 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/notifications/NotificationPanel.tsx
+2026-02-24 05:25:05,423 - Knowledge - INFO - Worker kw12 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/layout.tsx
+2026-02-24 05:25:05,456 - Knowledge - INFO - [LLM_CALL] Completed: StaffManagementView.tsx:chunk1, Duration: 6005ms, PromptTokens: 4916, CompletionTokens: 352, Cost: $0.00063
+2026-02-24 05:25:05,911 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/animations/animations.tsx (ext=.tsx, size=202)
+2026-02-24 05:25:06,053 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/config/sidebar.ts (ext=.ts, size=1318)
+2026-02-24 05:25:06,294 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=31, active_workers=13/15
+2026-02-24 05:25:06,369 - Knowledge - INFO - [kw15] Queue=27, InProgress=0, PendingWorkers=13/15, Completed=0/79 (0.0%)
+2026-02-24 05:25:06,435 - Knowledge - INFO - knowledge worker kw16 start
+2026-02-24 05:25:06,435 - Knowledge - INFO - Worker kw17 created using shared MongoDB connection pool
+2026-02-24 05:25:06,557 - Knowledge - INFO - Worker kw11 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/[...slug]/page.tsx
+2026-02-24 05:25:06,765 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/layout.tsx (ext=.tsx, size=1342)
+2026-02-24 05:25:06,836 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/staff/StaffManagementView.tsx
+2026-02-24 05:25:06,838 - Knowledge - INFO - Worker kw13 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/register/Step3.tsx
+2026-02-24 05:25:06,870 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:06,945 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/transactions/TransactionTable.tsx (small file (2851 bytes))
+2026-02-24 05:25:07,021 - Knowledge - INFO - Worker kw10 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/staff/page.tsx
+2026-02-24 05:25:07,106 - Knowledge - INFO - Worker kw14 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/globals.css
+2026-02-24 05:25:07,182 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=27, active_workers=14/16
+2026-02-24 05:25:07,264 - Knowledge - INFO - [kw16] Queue=23, InProgress=0, PendingWorkers=14/16, Completed=4/79 (5.1%)
+2026-02-24 05:25:07,324 - Knowledge - INFO - [LLM_CALL] Completed: form.tsx:chunk1, Duration: 5632ms, PromptTokens: 2900, CompletionTokens: 289, Cost: $0.00041
+2026-02-24 05:25:07,441 - Knowledge - INFO - knowledge worker kw17 start
+2026-02-24 05:25:07,441 - Knowledge - INFO - Worker kw18 created using shared MongoDB connection pool
+2026-02-24 05:25:07,553 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/[...slug]/page.tsx (ext=.tsx, size=1933)
+2026-02-24 05:25:07,648 - Knowledge - INFO - Worker kw12 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/auth/callback/route.ts
+2026-02-24 05:25:07,846 - Knowledge - INFO - Worker kw13 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/register/Step1.tsx
+2026-02-24 05:25:07,919 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/auth/RoleGuard.tsx
+2026-02-24 05:25:08,099 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/staff/page.tsx (ext=.tsx, size=844)
+2026-02-24 05:25:08,192 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/globals.css (ext=.css, size=1597)
+2026-02-24 05:25:08,402 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=23, active_workers=15/17
+2026-02-24 05:25:08,477 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/form.tsx
+2026-02-24 05:25:08,478 - Knowledge - INFO - Worker kw15 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/store/useAuthStore.ts
+2026-02-24 05:25:08,513 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:08,604 - Knowledge - INFO - [kw17] Queue=19, InProgress=0, PendingWorkers=15/17, Completed=8/79 (10.1%)
+2026-02-24 05:25:08,711 - Knowledge - INFO - knowledge worker kw18 start
+2026-02-24 05:25:08,711 - Knowledge - INFO - Worker kw19 created using shared MongoDB connection pool
+2026-02-24 05:25:08,786 - Knowledge - INFO - Worker kw11 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/store/page.tsx
+2026-02-24 05:25:08,910 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/auth/callback/route.ts (ext=.ts, size=1357)
+2026-02-24 05:25:09,099 - Knowledge - INFO - Worker kw13 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/register/page.tsx
+2026-02-24 05:25:09,182 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/notifications/NotificationPanel.tsx
+2026-02-24 05:25:09,276 - Knowledge - INFO - Worker kw10 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/page.tsx
+2026-02-24 05:25:09,349 - Knowledge - INFO - Worker kw14 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/layout.tsx
+2026-02-24 05:25:09,566 - Knowledge - INFO - Worker kw16 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/staffService.ts
+2026-02-24 05:25:09,804 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/store/useAuthStore.ts (ext=.ts, size=1347)
+2026-02-24 05:25:09,890 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/hooks/useNotifications.ts
+2026-02-24 05:25:09,952 - Knowledge - INFO - [LLM_CALL] Completed: cash-flow-chart.tsx:chunk1, Duration: 4544ms, PromptTokens: 2862, CompletionTokens: 202, Cost: $0.00037
+2026-02-24 05:25:10,022 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=19, active_workers=16/18
+2026-02-24 05:25:10,187 - Knowledge - INFO - [kw18] Queue=15, InProgress=0, PendingWorkers=16/18, Completed=11/79 (13.9%)
+2026-02-24 05:25:10,263 - Knowledge - INFO - knowledge worker kw19 start
+2026-02-24 05:25:10,263 - Knowledge - INFO - Worker kw20 created using shared MongoDB connection pool
+2026-02-24 05:25:10,380 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/store/page.tsx (ext=.tsx, size=1834)
+2026-02-24 05:25:10,457 - Knowledge - INFO - Worker kw12 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/page.tsx
+2026-02-24 05:25:10,580 - Knowledge - INFO - Worker kw13 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/register/Step2.tsx
+2026-02-24 05:25:10,657 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/notifications/NotificationBell.tsx
+2026-02-24 05:25:10,735 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/page.tsx (ext=.tsx, size=1665)
+2026-02-24 05:25:10,810 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/layout.tsx (ext=.tsx, size=639)
+2026-02-24 05:25:10,893 - Knowledge - INFO - Worker kw16 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/dashboardService.ts
+2026-02-24 05:25:11,012 - Knowledge - INFO - Worker kw15 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/middleware.ts
+2026-02-24 05:25:11,121 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/hooks/useDebounce.ts
+2026-02-24 05:25:11,193 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/custom-components/cash-flow-chart.tsx
+2026-02-24 05:25:11,193 - Knowledge - INFO - [LLM_CALL] Completed: select.tsx:chunk1, Duration: 5779ms, PromptTokens: 3532, CompletionTokens: 362, Cost: $0.00050
+2026-02-24 05:25:11,361 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=15, active_workers=17/19
+2026-02-24 05:25:11,448 - Knowledge - INFO - [kw19] Queue=11, InProgress=0, PendingWorkers=17/19, Completed=12/79 (15.2%)
+2026-02-24 05:25:11,557 - Knowledge - INFO - knowledge worker kw20 start
+2026-02-24 05:25:11,671 - Knowledge - INFO - Worker kw11 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/loading.tsx
+2026-02-24 05:25:11,744 - Knowledge - INFO - Worker kw12 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/login/page.tsx
+2026-02-24 05:25:11,933 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/badge.tsx
+2026-02-24 05:25:11,976 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/DashboardPageWrapper.tsx (small file (2237 bytes))
+2026-02-24 05:25:12,135 - Knowledge - INFO - Worker kw14 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/utils/inputValidator.ts
+2026-02-24 05:25:12,244 - Knowledge - INFO - Worker kw16 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/userService.ts
+2026-02-24 05:25:12,339 - Knowledge - INFO - Worker kw15 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/storeManagementService.ts
+2026-02-24 05:25:12,437 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/dashboard/AddTransactionModal.tsx
+2026-02-24 05:25:12,637 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/select.tsx
+2026-02-24 05:25:12,640 - Knowledge - INFO - Worker kw17 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/productService.ts
+2026-02-24 05:25:12,643 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:12,674 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:12,674 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:12,749 - Knowledge - INFO - Worker kw18 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/firebase/notificationService.ts
+2026-02-24 05:25:12,823 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=11, active_workers=18/20
+2026-02-24 05:25:12,922 - Knowledge - INFO - [kw20] Queue=7, InProgress=0, PendingWorkers=18/20, Completed=20/79 (25.3%)
+2026-02-24 05:25:12,993 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/loading.tsx (ext=.tsx, size=1838)
+2026-02-24 05:25:13,361 - Knowledge - INFO - Worker kw14 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/types/index.ts
+2026-02-24 05:25:13,468 - Knowledge - INFO - Worker kw16 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/authServices.ts
+2026-02-24 05:25:13,563 - Knowledge - INFO - Worker kw15 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/transactionService.ts
+2026-02-24 05:25:13,569 - Knowledge - INFO - [WEBSOCKET] Sent: Type=progress_update, Size: 288, Duration: 0ms
+2026-02-24 05:25:13,639 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/staff/StaffManagementView.tsx
+2026-02-24 05:25:13,850 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/productService.ts (ext=.ts, size=1584)
+2026-02-24 05:25:14,014 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/popover.tsx
+2026-02-24 05:25:14,093 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/config/constants.ts
+2026-02-24 05:25:14,187 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/input.tsx
+2026-02-24 05:25:14,262 - Knowledge - INFO - Worker kw18 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/firebase/config.ts
+2026-02-24 05:25:14,498 - Knowledge - INFO - Batch sizing: calculated=4, max_allowed=10, queue=7, active_workers=19/20
+2026-02-24 05:25:14,906 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/middleware.ts (small file (2766 bytes))
+2026-02-24 05:25:14,999 - Knowledge - INFO - [LLM_CALL] Completed: dialog.tsx:chunk1, Duration: 13160ms, PromptTokens: 2668, CompletionTokens: 443, Cost: $0.00044
+2026-02-24 05:25:15,176 - Knowledge - INFO - Worker kw17 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/supabase/client.ts
+2026-02-24 05:25:15,250 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/skeleton.tsx
+2026-02-24 05:25:15,414 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/config/sidebar.ts
+2026-02-24 05:25:15,487 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/card.tsx
+2026-02-24 05:25:15,615 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/firebase/config.ts (ext=.ts, size=1206)
+2026-02-24 05:25:15,918 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/dialog.tsx
+2026-02-24 05:25:15,918 - Knowledge - INFO - Worker kw19 processing /app/data/T0015/325857/b2305zz/kirana-fintech/components.json
+2026-02-24 05:25:15,919 - Knowledge - INFO - [WEBSOCKET] Sent: Type=unknown, Size: ?, Duration: 2350ms
+2026-02-24 05:25:16,006 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/supabase/client.ts (ext=.ts, size=363)
+2026-02-24 05:25:16,090 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/form.tsx
+2026-02-24 05:25:16,203 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/staff/page.tsx
+2026-02-24 05:25:16,291 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/accordion.tsx
+2026-02-24 05:25:16,364 - Knowledge - INFO - Worker kw18 processing /app/data/T0015/325857/b2305zz/kirana-fintech/next.config.ts
+2026-02-24 05:25:16,578 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/components.json (ext=.json, size=469)
+2026-02-24 05:25:16,654 - Knowledge - INFO - Progress: 25.3% | Files: 22/79 | Rate: 0.78 files/sec | Queue: 0
+2026-02-24 05:25:16,655 - Knowledge - INFO - Worker kw20 processing /app/data/T0015/325857/b2305zz/kirana-fintech/firebase-database-rules.json
+2026-02-24 05:25:16,655 - Knowledge - INFO - [LLM_CALL] Completed: SidebarItem.tsx:chunk1, Duration: 9818ms, PromptTokens: 3100, CompletionTokens: 288, Cost: $0.00043
+2026-02-24 05:25:16,769 - Knowledge - INFO - Worker kw17 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/supabase/server.ts
+2026-02-24 05:25:16,881 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/button.tsx
+2026-02-24 05:25:16,977 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/page.tsx
+2026-02-24 05:25:17,062 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/custom-components/cash-flow-chart.tsx
+2026-02-24 05:25:17,155 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/next.config.ts (ext=.ts, size=121)
+2026-02-24 05:25:17,275 - Knowledge - INFO - Worker kw19 processing /app/data/T0015/325857/b2305zz/kirana-fintech/tsconfig.json
+2026-02-24 05:25:17,517 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/firebase-database-rules.json (ext=.json, size=379)
+2026-02-24 05:25:17,584 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/SidebarItem.tsx
+2026-02-24 05:25:17,590 - Knowledge - INFO - [WEBSOCKET] Sent: Type=progress_update, Size: 289, Duration: 935ms
+2026-02-24 05:25:17,700 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/supabase/server.ts (ext=.ts, size=1852)
+2026-02-24 05:25:18,066 - Knowledge - INFO - Worker kw18 processing /app/data/T0015/325857/b2305zz/kirana-fintech/package.json
+2026-02-24 05:25:18,165 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/tsconfig.json (ext=.json, size=718)
+2026-02-24 05:25:18,274 - Knowledge - INFO - Worker kw20 processing /app/data/T0015/325857/b2305zz/kirana-fintech/eslint.config.mjs
+2026-02-24 05:25:18,470 - Knowledge - INFO - [WEBSOCKET] Sent: Type=unknown, Size: ?, Duration: 1816ms
+2026-02-24 05:25:18,682 - Knowledge - INFO - Worker kw17 processing /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/utils.ts
+2026-02-24 05:25:18,776 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/package.json (ext=.json, size=1596)
+2026-02-24 05:25:18,873 - Knowledge - INFO - Worker kw19 processing /app/data/T0015/325857/b2305zz/kirana-fintech/tailwind.config.ts
+2026-02-24 05:25:18,965 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/eslint.config.mjs (ext=.mjs, size=465)
+2026-02-24 05:25:19,086 - Knowledge - INFO - Progress: 27.8% | Files: 26/79 | Rate: 0.83 files/sec | Queue: 0
+2026-02-24 05:25:19,125 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:19,137 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:19,137 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:19,184 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/utils.ts (ext=.ts, size=168)
+2026-02-24 05:25:19,350 - Knowledge - INFO - Worker kw19 processing /app/data/T0015/325857/b2305zz/kirana-fintech/README.md
+2026-02-24 05:25:19,459 - Knowledge - INFO - Worker kw20 processing /app/data/T0015/325857/b2305zz/kirana-fintech/postcss.config.mjs
+2026-02-24 05:25:19,741 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/transactions/page.tsx
+2026-02-24 05:25:19,886 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/Footer.tsx
+2026-02-24 05:25:20,080 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/table.tsx
+2026-02-24 05:25:20,376 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/README.md (ext=.md, size=3941)
+2026-02-24 05:25:20,466 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/postcss.config.mjs (ext=.mjs, size=169)
+2026-02-24 05:25:20,653 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/[...slug]/page.tsx
+2026-02-24 05:25:20,899 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/Header.tsx
+2026-02-24 05:25:20,944 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/dialog.tsx
+2026-02-24 05:25:20,980 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:21,047 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/tailwind.config.ts (small file (2408 bytes))
+2026-02-24 05:25:21,082 - Knowledge - INFO - [LLM_CALL] Completed: custom-card.tsx:chunk1, Duration: 8445ms, PromptTokens: 3220, CompletionTokens: 308, Cost: $0.00045
+2026-02-24 05:25:21,559 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/store/page.tsx
+2026-02-24 05:25:21,754 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/label.tsx
+2026-02-24 05:25:21,757 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/SidebarItem.tsx
+2026-02-24 05:25:21,868 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/productService.ts
+2026-02-24 05:25:22,076 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/custom-components/custom-card.tsx
+2026-02-24 05:25:22,083 - Knowledge - INFO - Processing batch of 3 files
+2026-02-24 05:25:22,218 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:22,231 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/loading.tsx
+2026-02-24 05:25:22,268 - Knowledge - INFO - [LLM_CALL] Completed: OwnerStoreView.tsx:chunk1, Duration: 13790ms, PromptTokens: 9014, CompletionTokens: 402, Cost: $0.00106
+2026-02-24 05:25:22,321 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/ui/select.tsx
+2026-02-24 05:25:22,389 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/DashboardPageWrapper.tsx
+2026-02-24 05:25:22,467 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/supabase/client.ts
+2026-02-24 05:25:22,653 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/firebase-database-rules.json
+2026-02-24 05:25:22,737 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/components.json
+2026-02-24 05:25:22,950 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/store/OwnerStoreView.tsx
+2026-02-24 05:25:22,951 - Knowledge - INFO - [LLM_CALL] Completed: AddStaffModal.tsx:chunk1, Duration: 16115ms, PromptTokens: 5232, CompletionTokens: 393, Cost: $0.00068
+2026-02-24 05:25:23,350 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/supabase/server.ts
+2026-02-24 05:25:23,476 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/eslint.config.mjs
+2026-02-24 05:25:23,533 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/tsconfig.json
+2026-02-24 05:25:23,637 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/custom-components/AddStaffModal.tsx
+2026-02-24 05:25:23,681 - Knowledge - INFO - [LLM_CALL] Completed: AdminStoreView.tsx:chunk1, Duration: 11041ms, PromptTokens: 7436, CompletionTokens: 419, Cost: $0.00091
+2026-02-24 05:25:23,810 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/utils.ts
+2026-02-24 05:25:23,842 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/postcss.config.mjs
+2026-02-24 05:25:23,910 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/tailwind.config.ts
+2026-02-24 05:25:24,080 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/store/AdminStoreView.tsx
+2026-02-24 05:25:24,088 - Knowledge - INFO - [WEBSOCKET] Sent: Type=progress_update, Size: 288, Duration: 1ms
+2026-02-24 05:25:24,428 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/README.md
+2026-02-24 05:25:24,506 - Knowledge - INFO - [LLM_CALL] Completed: recent-activity.tsx:chunk1, Duration: 21190ms, PromptTokens: 3844, CompletionTokens: 275, Cost: $0.00049
+2026-02-24 05:25:24,718 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/custom-components/recent-activity.tsx
+2026-02-24 05:25:24,719 - Knowledge - INFO - [WEBSOCKET] Sent: Type=unknown, Size: ?, Duration: 632ms
+2026-02-24 05:25:25,049 - Knowledge - INFO - Progress: 54.4% | Files: 45/79 | Rate: 1.17 files/sec | Queue: 0
+2026-02-24 05:25:25,080 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:25,090 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:25,309 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/transactions/TransactionTable.tsx
+2026-02-24 05:25:25,382 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/custom-components/recent-activity.tsx
+2026-02-24 05:25:25,503 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/store/OwnerStoreView.tsx
+2026-02-24 05:25:25,579 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/custom-components/dashboard-component.tsx
+2026-02-24 05:25:25,717 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/store/AdminStoreView.tsx
+2026-02-24 05:25:25,796 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/custom-components/AddStaffModal.tsx
+2026-02-24 05:25:25,963 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/animations/animations.tsx
+2026-02-24 05:25:26,020 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/custom-components/custom-card.tsx
+2026-02-24 05:25:27,711 - Knowledge - INFO - [LLM_CALL] Completed: page.tsx:chunk1, Duration: 2409ms, PromptTokens: 2596, CompletionTokens: 254, Cost: $0.00036
+2026-02-24 05:25:27,945 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/login/page.tsx
+2026-02-24 05:25:27,961 - Knowledge - INFO - [WEBSOCKET] Sent: Type=progress_update, Size: 269, Duration: 14ms
+2026-02-24 05:25:28,359 - Knowledge - INFO - [WEBSOCKET] Sent: Type=unknown, Size: ?, Duration: 413ms
+2026-02-24 05:25:28,579 - Knowledge - INFO - Progress: 64.6% | Files: 51/79 | Rate: 1.21 files/sec | Queue: 0
+2026-02-24 05:25:28,580 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/page.tsx
+2026-02-24 05:25:29,387 - Knowledge - INFO - [LLM_CALL] Completed: AddTransactionDialog.tsx:chunk1, Duration: 10919ms, PromptTokens: 3248, CompletionTokens: 245, Cost: $0.00042
+2026-02-24 05:25:29,581 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/transactions/AddTransactionDialog.tsx
+2026-02-24 05:25:29,608 - Knowledge - INFO - [LLM_CALL] Completed: notificationService.ts:chunk1, Duration: 10328ms, PromptTokens: 2476, CompletionTokens: 400, Cost: $0.00041
+2026-02-24 05:25:29,926 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/userService.ts (small file (2021 bytes))
+2026-02-24 05:25:30,019 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/firebase/notificationService.ts
+2026-02-24 05:25:30,022 - Knowledge - INFO - [LLM_CALL] Completed: Navbar.tsx:chunk1, Duration: 17384ms, PromptTokens: 3402, CompletionTokens: 297, Cost: $0.00046
+2026-02-24 05:25:30,266 - Knowledge - INFO - Fast-tracked /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/authServices.ts (small file (2129 bytes))
+2026-02-24 05:25:30,412 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/Navbar.tsx
+2026-02-24 05:25:30,863 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:31,158 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/dashboard/layout.tsx
+2026-02-24 05:25:31,284 - Knowledge - INFO - [LLM_CALL] Completed: Sidebar.tsx:chunk1, Duration: 24446ms, PromptTokens: 2980, CompletionTokens: 266, Cost: $0.00040
+2026-02-24 05:25:31,555 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/Sidebar.tsx
+2026-02-24 05:25:31,556 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:31,562 - Knowledge - INFO - [LLM_CALL] Completed: index.ts:chunk1, Duration: 9467ms, PromptTokens: 3378, CompletionTokens: 274, Cost: $0.00045
+2026-02-24 05:25:31,663 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/auth/callback/route.ts
+2026-02-24 05:25:31,885 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/firebase/notificationService.ts
+2026-02-24 05:25:31,993 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/types/index.ts
+2026-02-24 05:25:32,237 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/firebase/config.ts
+2026-02-24 05:25:32,682 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:32,718 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/next.config.ts
+2026-02-24 05:25:32,791 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/page.tsx
+2026-02-24 05:25:32,910 - Knowledge - INFO - [LLM_CALL] Completed: inputValidator.ts:chunk1, Duration: 16992ms, PromptTokens: 2336, CompletionTokens: 318, Cost: $0.00036
+2026-02-24 05:25:32,944 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/Sidebar.tsx
+2026-02-24 05:25:33,243 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/package.json
+2026-02-24 05:25:33,317 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/utils/inputValidator.ts
+2026-02-24 05:25:33,317 - Knowledge - INFO - [LLM_CALL] Completed: transactionService.ts:chunk1, Duration: 9680ms, PromptTokens: 2260, CompletionTokens: 285, Cost: $0.00034
+2026-02-24 05:25:33,371 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/login/page.tsx
+2026-02-24 05:25:33,435 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/layout/Navbar.tsx
+2026-02-24 05:25:33,703 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/transactionService.ts
+2026-02-24 05:25:33,703 - Knowledge - INFO - [LLM_CALL] Completed: dashboardService.ts:chunk1, Duration: 9616ms, PromptTokens: 2538, CompletionTokens: 276, Cost: $0.00036
+2026-02-24 05:25:34,283 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/dashboardService.ts
+2026-02-24 05:25:34,970 - Knowledge - INFO - [LLM_CALL] Completed: staffService.ts:chunk1, Duration: 19052ms, PromptTokens: 2170, CompletionTokens: 266, Cost: $0.00032
+2026-02-24 05:25:35,192 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/staffService.ts
+2026-02-24 05:25:35,379 - Knowledge - INFO - [WEBSOCKET] Sent: Type=progress_update, Size: 270, Duration: 0ms
+2026-02-24 05:25:35,589 - Knowledge - INFO - [WEBSOCKET] Sent: Type=unknown, Size: ?, Duration: 210ms
+2026-02-24 05:25:35,730 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/logo/logo.tsx
+2026-02-24 05:25:35,781 - Knowledge - INFO - Progress: 82.3% | Files: 67/79 | Rate: 1.37 files/sec | Queue: 0
+2026-02-24 05:25:35,781 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/register/page.tsx
+2026-02-24 05:25:35,794 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:35,811 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:35,960 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/components/transactions/AddTransactionDialog.tsx
+2026-02-24 05:25:36,247 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/globals.css
+2026-02-24 05:25:36,397 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/staffService.ts
+2026-02-24 05:25:36,615 - Knowledge - INFO - [LLM_CALL] Completed: Step3.tsx:chunk1, Duration: 23976ms, PromptTokens: 4690, CompletionTokens: 245, Cost: $0.00057
+2026-02-24 05:25:36,726 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/layout.tsx
+2026-02-24 05:25:36,807 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/dashboardService.ts
+2026-02-24 05:25:36,870 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/register/Step3.tsx
+2026-02-24 05:25:36,998 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/utils/inputValidator.ts
+2026-02-24 05:25:37,092 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/userService.ts
+2026-02-24 05:25:37,627 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/authServices.ts
+2026-02-24 05:25:38,465 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/types/index.ts
+2026-02-24 05:25:38,658 - Knowledge - INFO - [LLM_CALL] Completed: Step2.tsx:chunk1, Duration: 8177ms, PromptTokens: 5044, CompletionTokens: 518, Cost: $0.00071
+2026-02-24 05:25:38,933 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/register/Step2.tsx
+2026-02-24 05:25:39,266 - Knowledge - INFO - [LLM_CALL] Completed: Step1.tsx:chunk1, Duration: 20798ms, PromptTokens: 2700, CompletionTokens: 297, Cost: $0.00039
+2026-02-24 05:25:39,435 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/register/Step1.tsx
+2026-02-24 05:25:39,442 - Knowledge - INFO - [WEBSOCKET] Sent: Type=progress_update, Size: 270, Duration: 0ms
+2026-02-24 05:25:39,731 - Knowledge - INFO - [WEBSOCKET] Sent: Type=unknown, Size: ?, Duration: 288ms
+2026-02-24 05:25:39,920 - Knowledge - INFO - Progress: 89.9% | Files: 72/79 | Rate: 1.33 files/sec | Queue: 0
+2026-02-24 05:25:39,951 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:25:40,216 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/register/Step3.tsx
+2026-02-24 05:25:40,382 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/register/Step1.tsx
+2026-02-24 05:25:40,631 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/register/page.tsx
+2026-02-24 05:25:40,855 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/app/register/Step2.tsx
+2026-02-24 05:26:30,844 - Knowledge - INFO - [LLM_CALL] Completed: storeManagementService.ts:chunk1, Duration: 74189ms, PromptTokens: 7350, CompletionTokens: 8000, Cost: $0.00393
+2026-02-24 05:26:31,026 - Knowledge - ERROR - Failed to parse LLM response as JSON for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/storeManagementService.ts, chunk 1
+2026-02-24 05:26:31,190 - Knowledge - INFO - done ingest for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/storeManagementService.ts
+2026-02-24 05:26:31,428 - Knowledge - INFO - Processing batch of 4 files
+2026-02-24 05:26:31,624 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/store/useAuthStore.ts
+2026-02-24 05:26:31,833 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/middleware.ts
+2026-02-24 05:26:32,032 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/storeManagementService.ts
+2026-02-24 05:26:32,197 - Knowledge - INFO - process ingested knowledge for /app/data/T0015/325857/b2305zz/kirana-fintech/src/lib/services/transactionService.ts
+2026-02-24 05:26:32,723 - Knowledge - INFO - [WEBSOCKET] Sent: Type=progress_update, Size: 270, Duration: 0ms
+2026-02-24 05:26:32,898 - Knowledge - INFO - [WEBSOCKET] Sent: Type=unknown, Size: ?, Duration: 176ms
+2026-02-24 05:26:33,129 - Knowledge - INFO - Progress: 100.0% | Files: 79/79 | Rate: 0.74 files/sec | Queue: 0
+2026-02-24 05:26:33,291 - Knowledge - INFO - Knowledge creation complete
+2026-02-24 05:26:33,482 - Knowledge - INFO - ==================================================
+2026-02-24 05:26:33,649 - Knowledge - INFO - KNOWLEDGE GRAPH GENERATION PERFORMANCE SUMMARY
+2026-02-24 05:26:33,829 - Knowledge - INFO - ==================================================
+2026-02-24 05:26:33,979 - Knowledge - INFO - Total processing time: 108.10 seconds (1.80 minutes)
+2026-02-24 05:26:34,203 - Knowledge - INFO - Files processed: 0
+2026-02-24 05:26:34,371 - Knowledge - INFO - Processing rate: 0.00 files/second
+2026-02-24 05:26:34,575 - Knowledge - INFO - 
+[TIME_BREAKDOWN]
+2026-02-24 05:26:34,759 - Knowledge - INFO - File Reading: 0.00s (0.0%)
+2026-02-24 05:26:34,949 - Knowledge - INFO - LLM Processing: 381.46s (352.9%)
+2026-02-24 05:26:35,144 - Knowledge - INFO - MongoDB Operations: 0.00s (0.0%)
+2026-02-24 05:26:35,367 - Knowledge - INFO - Redis Operations: 0.00s (0.0%)
+2026-02-24 05:26:35,578 - Knowledge - INFO - WebSocket Communication: 6.83s (6.3%)
+2026-02-24 05:26:35,761 - Knowledge - INFO - 
+[LLM_STATS]
+2026-02-24 05:26:35,959 - Knowledge - INFO - Total LLM calls: 27
+2026-02-24 05:26:36,122 - Knowledge - INFO - Average LLM response time: 14128ms
+2026-02-24 05:26:36,272 - Knowledge - INFO - Average prompt tokens: 3897.6
+2026-02-24 05:26:36,466 - Knowledge - INFO - Average completion tokens: 604.3
+2026-02-24 05:26:36,674 - Knowledge - INFO - Total prompt tokens: 105236
+2026-02-24 05:26:36,850 - Knowledge - INFO - Total completion tokens: 16317
+2026-02-24 05:26:37,035 - Knowledge - INFO - Total LLM cost: $0.0171
+2026-02-24 05:26:37,205 - Knowledge - INFO - 
+[DATABASE_STATS]
+2026-02-24 05:26:37,406 - Knowledge - INFO - MongoDB operations: 0
+2026-02-24 05:26:37,598 - Knowledge - INFO - Redis operations: 0
+2026-02-24 05:26:37,779 - Knowledge - INFO - 
+[COMMUNICATION_STATS]
+2026-02-24 05:26:37,945 - Knowledge - INFO - WebSocket messages sent: 15
+2026-02-24 05:26:38,113 - Knowledge - INFO - Average message size: 140.2 bytes
+2026-02-24 05:26:38,275 - Knowledge - INFO - 
+[WORKER_STATS]
+2026-02-24 05:26:38,447 - Knowledge - INFO - 
+[FILE_TYPE_STATS]
+2026-02-24 05:26:38,661 - Knowledge - INFO - 
+[SLOWEST_FILES]
+2026-02-24 05:26:38,881 - Knowledge - INFO - ==================================================
+2026-02-24 05:26:39,095 - Knowledge - INFO - ==================================================
+2026-02-24 05:26:39,286 - Knowledge - INFO - KNOWLEDGE GRAPH GENERATION PERFORMANCE SUMMARY
+2026-02-24 05:26:39,518 - Knowledge - INFO - ==================================================
+2026-02-24 05:26:39,746 - Knowledge - INFO - Total processing time: 113.77 seconds (1.90 minutes)
+2026-02-24 05:26:39,947 - Knowledge - INFO - Files processed: 79 of 79
+2026-02-24 05:26:40,118 - Knowledge - INFO - Processing rate: 0.69 files/second
+2026-02-24 05:26:40,332 - Knowledge - INFO - WebSocket messages sent: 7
+2026-02-24 05:26:40,549 - Knowledge - INFO - MongoDB operations: 79
+2026-02-24 05:26:40,718 - Knowledge - INFO - Average MongoDB ops per file: 1.00
+2026-02-24 05:26:40,930 - Knowledge - INFO - LLM costs: $0.0180
+2026-02-24 05:26:41,127 - Knowledge - INFO - Prompt tokens: 112340
+2026-02-24 05:26:41,305 - Knowledge - INFO - Completion tokens: 16833
+2026-02-24 05:26:41,500 - Knowledge - INFO - Updating org costs, total cost: 0.017967199999999996
+2026-02-24 05:26:42,684 - Knowledge - INFO - [WEBSOCKET] Sent: Type=progress_update, Size: 266, Duration: 0ms
+2026-02-24 05:26:42,875 - Knowledge - INFO - Saving knowledge to Redis...
+2026-02-24 05:26:43,137 - Knowledge - INFO - Knowledge saved to Redis successfully
