@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Search, Bell, Clock, LogOut } from 'lucide-react';
+import { Search, Clock, LogOut } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { logoutUser } from '@/lib/services/authServices';
 import { useRouter } from 'next/navigation';
@@ -82,11 +82,6 @@ export function Navbar({ userAvatar }: NavbarProps) {
                   className="w-80 pl-10 h-10 bg-white/50 dark:bg-slate-800/50 border-gray-200 dark:border-slate-600 focus-visible:ring-emerald-500 focus-visible:border-emerald-500 transition-all"
                 />
               </div>
-
-              {/* Notification Bell */}
-              <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-500 dark:text-gray-400 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400">
-                <Bell className="w-5 h-5" />
-              </button>
 
               {/* Clock/Calendar */}
               <button className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-500 dark:text-gray-400 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400">
